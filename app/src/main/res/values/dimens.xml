@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimensinsLogo">300dp</dimen>
+    <dimen name="marginsStartLogo">22dp</dimen>
+    <dimen name="marginStartLabelRegLogRec">52dp</dimen>
+    <dimen name="marginTopLabelRegLogRec">260dp</dimen>
+    <dimen name="marginStartEditText">52dp</dimen>
+    <dimen name="marginEndEditText">32dp</dimen>
+    <dimen name="marginTopEditText">32dp</dimen>
+</resources>

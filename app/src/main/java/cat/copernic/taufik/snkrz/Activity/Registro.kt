@@ -1,11 +1,12 @@
-package cat.copernic.taufik.snkrz
+package cat.copernic.taufik.snkrz.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import cat.copernic.taufik.snkrz.R
 
-class MainActivity : AppCompatActivity() {
+class Registro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_registro)
     }
 }

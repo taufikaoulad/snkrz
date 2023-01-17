@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="grey_SNKRZ">#03051e</color>
+    <!-- Color logo con transparencia-->
+    <color name="blanco_transparente">#8BFFFFFF</color>
+    <color name="progressBar_transparente">#ED070B42</color>
+    <color name="progressBar_blue">#DF000CAE</color>
 </resources>

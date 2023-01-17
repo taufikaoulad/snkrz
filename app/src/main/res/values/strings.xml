@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SNKRZ</string>
+    <string name="logo_snkrz">Logo_SNKRZ</string>
+    <string name="inicio_de_sesión">Inicio de sesión</string>
+    <string name="recuperar_contrase_a">Recuperar Contraseña</string>
+    <string name="email">Email</string>
+    <string name="volver_a_login">Volver a Login</string>
+    <string name="nombre">Nombre</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ya_tienes_cuenta">Ya tienes cuenta?</string>
+    <string name="Login">LOGIN</string>
+    <string name="registrarse_mayusculas">REGISTRARSE</string>
+    <string name="no_tienes_cuenta">No tienes cuenta?</string>
+    <string name="olvidaste_la_contrase_a">Olvidaste la contraseña?</string>
+    <string name="registro">Registro</string>
 </resources>
