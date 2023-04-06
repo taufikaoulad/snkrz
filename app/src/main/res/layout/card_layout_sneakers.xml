@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardViewVol"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/imagenSneaker"
+            android:layout_width="140dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/descripcionImagenSneaker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dunk_grey" />
+
+        <TextView
+            android:id="@+id/editTextNombreSneaker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/nike_dunk_lows"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imagenSneaker"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/goSisgn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/grey_fog"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imagenSneaker"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreSneaker"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/gooSisgn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner_view"
+            android:clickable="true"
+            android:padding="5dp"
+            android:text="@string/fechaEjemploSneaker"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/imagenSneaker"
+            app:layout_constraintTop_toBottomOf="@+id/goSisgn"
+            tools:ignore="TextContrastCheck"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

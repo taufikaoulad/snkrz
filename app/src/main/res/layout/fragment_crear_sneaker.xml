@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".Activity.MainActivity">
+        tools:context=".Fragment.CrearSneaker">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewEditarPerfil"
@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardViewEditarPerfil"
-            app:startIconDrawable="@drawable/ic_round_lock_24"
+            app:startIconDrawable="@drawable/ic_round_drive_file_rename_outline_24"
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -116,7 +116,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:startIconDrawable="@drawable/ic_round_euro_24"
+            app:startIconDrawable="@drawable/ic_round_drive_file_rename_outline_24"
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -191,7 +191,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="60dp"
-            android:hint="@string/tel_fono"
+            android:hint="@string/descripci_n"
             android:textColorHint="@color/white"
             app:boxStrokeColor="@color/white"
             app:endIconMode="clear_text"
@@ -200,7 +200,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            app:startIconDrawable="@drawable/ic_round_phone_24"
+            app:startIconDrawable="@drawable/ic_baseline_description_24"
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText

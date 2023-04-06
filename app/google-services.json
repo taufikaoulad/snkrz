@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "736193104541",
+    "project_id": "snkrz-project-abp",
+    "storage_bucket": "snkrz-project-abp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736193104541:android:327735cef0f5fe1580a274",
+        "android_client_info": {
+          "package_name": "cat.copernic.taufik.snkrz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736193104541-ms7dkvd6htqvgq15rb9snh5v8ui1o2fs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2jUcpGUCB_3FlVuIxBBqI_FRsBrQSncY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736193104541-ms7dkvd6htqvgq15rb9snh5v8ui1o2fs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

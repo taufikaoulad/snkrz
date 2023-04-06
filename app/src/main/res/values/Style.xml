@@ -7,6 +7,8 @@
             <item name="android:textStyle">bold</item>
             <item name="android:textColor">@color/white</item>
             <item name="android:fontFamily">@font/archivo_black</item>
+            <item name="android:layout_marginStart">@dimen/marginStartLabelRegLogRec</item>
+            <item name="android:layout_marginTop">@dimen/marginTopLabelRegLogRec</item>
         </style>
 
         <!--Estilo para texto basico-->
@@ -40,10 +42,16 @@
         <style name="ButtonLogReg" >
             <item name="backgroundTint">@color/white</item>
             <item name="android:textSize">18sp</item>
-            <item name="cornerRadius">14dp</item>
+            <item name="cornerRadius">12dp</item>
             <item name="android:textColor">@color/black</item>
             <item name="android:fontFamily">@font/archivo_black</item>
             <item name="android:textAllCaps">false</item>
+            <item name="android:layout_marginStart">@dimen/marginStartButton</item>
+            <item name="android:layout_marginEnd">@dimen/marginEndButton</item>
+            <item name="android:layout_marginTop">@dimen/marginTopButton</item>
         </style>
+
+
+
 
 </resources>

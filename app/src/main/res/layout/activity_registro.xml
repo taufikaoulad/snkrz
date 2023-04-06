@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#03051e"
+        android:background="@color/blueforsneaker"
         tools:context=".Activity.Registro">
 
         <ImageView
@@ -40,8 +40,6 @@
             style="@style/LabelEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginStartLabelRegLogRec"
-            android:layout_marginTop="@dimen/marginTopLabelRegLogRec"
             android:text="@string/registro"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +65,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/RegNombre"
+                android:id="@+id/EditTextRegName"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,9 +91,8 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/RegEmail"
+                android:id="@+id/EditTextRegMail"
                 style="@style/EditTextBlancoLogReg"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
@@ -120,7 +117,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/RegPassword"
+                android:id="@+id/EditTextRegPassw"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,7 +133,7 @@
             android:layout_marginStart="@dimen/marginStartEditText"
             android:layout_marginTop="@dimen/marginTopEditText"
             android:layout_marginEnd="@dimen/marginEndEditText"
-            android:hint="@string/contrasena"
+            android:hint="@string/repite_la_contrase_a"
             android:textColorHint="@color/white"
             app:boxStrokeColor="@color/white"
             app:endIconMode="password_toggle"
@@ -147,7 +144,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/RegPasswordRepetir"
+                android:id="@+id/EditTextRegPasswRep"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,9 +156,6 @@
             style="@style/ButtonLogReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginStartEditText"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="52dp"
             android:text="@string/registrarse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -170,7 +164,6 @@
 
         <TextView
             android:id="@+id/textView"
-            style="@style/txtLestraBasica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="88dp"
@@ -184,7 +177,7 @@
             app:layout_constraintTop_toBottomOf="@+id/btnRegistro" />
 
         <TextView
-            android:id="@+id/goSign"
+            android:id="@+id/linkGoLog"
             style="@style/SubLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

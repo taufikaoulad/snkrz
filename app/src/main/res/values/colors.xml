@@ -8,9 +8,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="grey_SNKRZ">#03051e</color>
+    <color name="blueforsneaker">#03051e</color>
     <!-- Color logo con transparencia-->
     <color name="blanco_transparente">#8BFFFFFF</color>
     <color name="progressBar_transparente">#ED070B42</color>
     <color name="progressBar_blue">#DF000CAE</color>
+    <color name="backgroundColorFecha">#E0E0E0</color>
+    <color name="gris">#838383</color>
+    <color name="colorbox">#192037</color>
+    <color name="colorbbbbox">#2D2F40</color>
+    <color name="colorDivider">#0E1140</color>
+    <color name="azul">#0038FF</color>
+    <color name="rojo">#FF0000</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#37FF00</color>
+    <color name="blue">#275DFF</color>
+
 </resources>
+
+<!--#2C2E3E-->
+
+<!--#EAEAEA-->

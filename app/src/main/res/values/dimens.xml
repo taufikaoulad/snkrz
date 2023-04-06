@@ -7,4 +7,14 @@
     <dimen name="marginStartEditText">52dp</dimen>
     <dimen name="marginEndEditText">32dp</dimen>
     <dimen name="marginTopEditText">32dp</dimen>
+    <dimen name="marginStartButton">52dp</dimen>
+    <dimen name="marginEndButton">52dp</dimen>
+    <dimen name="marginTopButton">32dp</dimen>
+    <dimen name="olvidasteContrasenaMarginEnd">38dp</dimen>
+    <dimen name="olvidasteContrasenaMarginTop">10dp</dimen>
+    <dimen name="noTienesCuentaMarginStart">56dp</dimen>
+    <dimen name="noTienesCuentaMarginTop">26dp</dimen>
+    <dimen name="goRegistrarseMarginStart">6dp</dimen>
+    <dimen name="goRegistrarseMarginTop">25dp</dimen>
+    <dimen name="goRegistrarseMarginEnd">44dp</dimen>
 </resources>
