@@ -5,7 +5,7 @@
     android:id="@+id/inde"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blueforsneaker"
+    android:background="@color/blueforsnkrz"
     tools:context=".Activity.SplashScreen">
 
     <ImageView

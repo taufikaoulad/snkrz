@@ -43,7 +43,7 @@
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="24dp"
                 android:text="@string/editar_perfil"
-                android:textColor="@color/blueforsneaker"
+                android:textColor="@color/blueforsnkrz"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toStartOf="@+id/GuardarDatosPerfil"
                 app:layout_constraintStart_toEndOf="@+id/CancelarDatosPerfil"

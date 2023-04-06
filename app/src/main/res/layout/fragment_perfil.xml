@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blueforsneaker">
+    android:background="@color/blueforsnkrz">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -24,7 +24,7 @@
         android:layout_marginTop="45dp"
         android:contentDescription="@string/imagen_perfil"
         android:src="@drawable/imagenparaperfil"
-        app:civ_border_color="@color/blueforsneaker"
+        app:civ_border_color="@color/blueforsnkrz"
         app:civ_border_width="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
