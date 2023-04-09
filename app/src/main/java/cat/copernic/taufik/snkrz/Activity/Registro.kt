@@ -48,7 +48,7 @@ class Registro : AppCompatActivity() {
             ) {
                 register(email, password)
             } else {
-                showAlert("El registro a fallado!")
+                showAlert("El email, la contraseña y la confirmacion de la contraseña, no pueden ser campos vacíos. ")
             }
         }
 
