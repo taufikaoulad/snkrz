@@ -14,6 +14,9 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        //Ocultar la app bar
+        supportActionBar?.hide()
+
         val splashAnimation = AnimationUtils.loadAnimation(this, R.anim.asset_fade_in)
         //comentar
         LogoSnkr.startAnimation(splashAnimation)

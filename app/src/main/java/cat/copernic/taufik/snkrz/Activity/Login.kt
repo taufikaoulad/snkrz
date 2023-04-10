@@ -20,6 +20,9 @@ class Login : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
+        //Ocultar la app bar
+        supportActionBar?.hide()
+
         binding.linkRecuperarContrasena.setOnClickListener{
             startActivity(Intent(this, RecuperarContrasena::class.java))
             finish()

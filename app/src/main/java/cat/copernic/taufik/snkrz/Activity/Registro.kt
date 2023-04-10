@@ -27,8 +27,11 @@ class Registro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
+
+        //Ocultar la app bar
+        supportActionBar?.hide()
+
 
         binding.linkGoLog.setOnClickListener{
             startActivity(Intent(this, Login::class.java))

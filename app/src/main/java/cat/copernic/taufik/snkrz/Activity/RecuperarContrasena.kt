@@ -15,6 +15,9 @@ class RecuperarContrasena : AppCompatActivity() {
         binding = ActivityRecuperarContrasenaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Ocultar la app bar
+        supportActionBar?.hide()
+
         binding.volverLogin.setOnClickListener{
             startActivity(Intent(this, Login::class.java))
             finish()
