@@ -19,7 +19,6 @@ class Login : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
         //Ocultar la app bar
         supportActionBar?.hide()
 

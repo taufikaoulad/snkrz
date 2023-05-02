@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mainScreen"
+            android:icon="@drawable/ic_round_home_24"
+            android:title="@string/inicio" />
+
+        <item
+            android:id="@+id/perfil"
+            android:icon="@drawable/ic_round_account_circle_24"
+            android:title="@string/perfil" />
+
+        <item
+            android:id="@+id/crearSneaker"
+            android:icon="@drawable/ic_round_add_circle_24"
+            android:title="@string/crear_snkrz" />
+
+
+    </group>
+
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/signOut"
+                android:icon="@drawable/ic_round_output_24"
+                android:title="@string/cerrar_sesi_n" />
+        </menu>
+
+    </item>
+</menu>

@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="blueforsnkrz">#03051e</color>
+    <color name="headerColor">#0C1140</color>
+    <color name="menu">#2D348B</color>
     <!-- Color logo con transparencia-->
     <color name="blanco_transparente">#8BFFFFFF</color>
     <color name="progressBar_transparente">#ED070B42</color>

@@ -29,4 +29,14 @@
     <style name="ButtonLogRegTheme" parent="ButtonLogReg">
     </style>
 
+
+    <style name="Theme.Snkrz.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Snkrz.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.SNKRZ.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
