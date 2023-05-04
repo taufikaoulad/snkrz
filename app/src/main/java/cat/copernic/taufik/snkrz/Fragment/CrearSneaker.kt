@@ -25,11 +25,11 @@ class CrearSneaker : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.CancelarDatosCrearSneaker.setOnClickListener {
-            findNavController().navigate(R.id.action_crearSneaker_to_mainScreen)
+            findNavController().navigate(R.id.action_crearSneaker_to_pantallaPrincipalSneakerList)
         }
 
         binding.GuardarDatosCrearSneaker.setOnClickListener {
-            findNavController().navigate(R.id.action_crearSneaker_to_mainScreen)
+            findNavController().navigate(R.id.action_crearSneaker_to_pantallaPrincipalSneakerList)
         }
 
     }

@@ -69,4 +69,11 @@ class Login : AppCompatActivity() {
         dialog.show()
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
 }

@@ -3,12 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainScreen">
+    app:startDestination="@id/pantallaPrincipalSneakerList">
     <fragment
-        android:id="@+id/mainScreen"
-        android:name="cat.copernic.taufik.snkrz.Fragment.MainScreen"
-        android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
+        android:id="@+id/pantallaPrincipalSneakerList"
+        android:name="cat.copernic.taufik.snkrz.Fragment.PantallaPrincipalSneakerList"
+        android:label="fragment_pantalla_principal_sneaker_list"
+        tools:layout="@layout/fragment_pantalla_principal_sneaker_list" />
+    <fragment
+        android:id="@+id/crearSneaker"
+        android:name="cat.copernic.taufik.snkrz.Fragment.CrearSneaker"
+        android:label="CrearSneaker"
+        tools:layout="@layout/fragment_crear_sneaker">
+        <action
+            android:id="@+id/action_crearSneaker_to_pantallaPrincipalSneakerList"
+            app:destination="@id/pantallaPrincipalSneakerList" />
+    </fragment>
     <fragment
         android:id="@+id/perfil"
         android:name="cat.copernic.taufik.snkrz.Fragment.Perfil"
@@ -19,19 +28,10 @@
             app:destination="@id/editarPerfil" />
     </fragment>
     <fragment
-        android:id="@+id/crearSneaker"
-        android:name="cat.copernic.taufik.snkrz.Fragment.CrearSneaker"
-        android:label="CrearSneaker"
-        tools:layout="@layout/fragment_crear_sneaker">
-        <action
-            android:id="@+id/action_crearSneaker_to_mainScreen"
-            app:destination="@id/mainScreen" />
-    </fragment>
-    <fragment
         android:id="@+id/editarPerfil"
         android:name="cat.copernic.taufik.snkrz.Fragment.EditarPerfil"
         android:label="fragment_editar_perfil"
-        tools:layout="@layout/fragment_editar_perfil" >
+        tools:layout="@layout/fragment_editar_perfil">
         <action
             android:id="@+id/action_editarPerfil_to_perfil"
             app:destination="@id/perfil" />

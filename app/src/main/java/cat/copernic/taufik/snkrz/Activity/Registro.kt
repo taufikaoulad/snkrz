@@ -51,7 +51,7 @@ class Registro : AppCompatActivity() {
             ) {
                 register(email, password)
             } else {
-                showAlert("El email, la contraseña y la confirmacion de la contraseña, no pueden ser campos vacíos. ")
+                showAlert("El email, la contraseña y la confirmacion de la contraseña, no pueden ser campos vacíos. " ,"ERROR")
             }
         }
 
@@ -64,18 +64,18 @@ class Registro : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             anadirUsuario(email, password)
-                            showAlert("Se ha creado la cuenta con éxito!!!")
+                            showAlert("Se ha creado la cuenta con éxito!!!", "Creación Exitosa")
                         } else {
-                            showAlert("Se ha producido un error registrado al usuario")
+                            showAlert("Se ha producido un error registrado al usuario","ERROR")
                         }
                     }
             } else {
                 showAlert("El format de Contrasenya és invalid. " +
                         "La contrasenya ha de contenir entre 6 i 16 valors, una majuscula, una minuscula, " +
-                        "un numero i un caracter que no sigui alfanumeric.")
+                        "un numero i un caracter que no sigui alfanumeric.", "ERROR")
             }
         } else {
-            showAlert("El format del Email és invalid")
+            showAlert("El format del Email és invalid","ERROR")
         }
 
     }
@@ -107,7 +107,7 @@ class Registro : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }else {
-                    showAlert("El Usuari no s'ha afegit")
+                    showAlert("El Usuari no s'ha afegit","ERROR")
                 }
             }
     }
@@ -116,9 +116,9 @@ class Registro : AppCompatActivity() {
         return email.isNotEmpty() && password.isNotEmpty() && repetirContrasenya.isNotEmpty()
     }
 
-    private fun showAlert(mensaje: String) {
+    private fun showAlert(mensaje: String, mensaje2: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("ERROR") //siempre sale error tener en cuenta
+        builder.setTitle(mensaje2) //siempre sale error tener en cuenta
         builder.setMessage(mensaje)
         val dialog: AlertDialog = builder.create()
         dialog.show()
