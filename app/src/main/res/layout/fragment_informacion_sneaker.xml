@@ -26,17 +26,6 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/volverPantallaPrincipal"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="38dp"
-                    android:contentDescription="@string/volver_a_login"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_round_arrow_back_ios_24" />
-
-                <ImageView
                     android:id="@+id/imagenSneaker"
                     android:layout_width="200dp"
                     android:layout_height="160dp"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cardViewVol"
+    android:id="@+id/cardView"
     android:animateLayoutChanges="true"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
@@ -14,7 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="120dp"
+        android:id="@+id/CardViewSneaker">
 
         <ImageView
             android:id="@+id/imagenSneaker"

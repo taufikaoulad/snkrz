@@ -1,12 +1,15 @@
 package cat.copernic.taufik.snkrz.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.taufik.snkrz.Model.Sneaker
+import cat.copernic.taufik.snkrz.Fragment.PantallaPrincipalSneakerListDirections
+import cat.copernic.taufik.snkrz.Model.sneaker
 import cat.copernic.taufik.snkrz.databinding.CardLayoutSneakersBinding
 
-class CustomAdapter(val SneakerList:List<Sneaker>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(val SneakerList:List<sneaker>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     inner class ViewHolder(val binding: CardLayoutSneakersBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
@@ -29,12 +32,21 @@ class CustomAdapter(val SneakerList:List<Sneaker>): RecyclerView.Adapter<CustomA
                 binding.textNombreSneaker.text = nombreSneaker
                 binding.textModeloSneaker.text = this.ModelSneaker
                 binding.txtFechaLanzamiento.text = this.FechaLanzamiento
-                binding.imagenSneaker.setImageResource(this.imagenSneaker)
+
+                // Configurar el clic en el elemento del RecyclerView
+                binding.CardViewSneaker.setOnClickListener { view ->
+                    safeargs(SneakerList.get(position), view)
+                }
             }
         }
     }
 
     override fun getItemCount(): Int {
         return SneakerList.size
+    }
+
+    fun safeargs(args: sneaker, view : View){
+        var action = PantallaPrincipalSneakerListDirections.actionPantallaPrincipalSneakerListToInformacionSneaker(args)
+        view.findNavController().navigate(action)
     }
 }

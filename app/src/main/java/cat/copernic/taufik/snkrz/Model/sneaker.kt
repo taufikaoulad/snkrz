@@ -1,12 +1,13 @@
 package cat.copernic.taufik.snkrz.Model
 
-import java.time.LocalDate
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-data class Sneaker (
+@Parcelize
+data class sneaker (
     val NombreSneaker: String,
     val ModelSneaker: String,
     val Precio: String,
     val CodigoReferencia: String,
     val FechaLanzamiento: String,
-    val Descripcion: String,
-    val imagenSneaker: Int)
+    val Descripcion: String) : Parcelable
