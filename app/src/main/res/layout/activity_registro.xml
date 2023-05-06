@@ -36,7 +36,7 @@
             app:tint="@color/blanco_transparente" />
 
         <TextView
-            android:id="@+id/txtRegistro"
+            android:id="@+id/txtSneakerList"
             style="@style/LabelEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             app:endIconMode="clear_text"
             app:endIconTint="@color/white"
             app:hintTextColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/txtRegistro"
+            app:layout_constraintTop_toBottomOf="@+id/txtSneakerList"
             app:startIconDrawable="@drawable/ic_round_person_24"
             app:startIconTint="@color/white">
 

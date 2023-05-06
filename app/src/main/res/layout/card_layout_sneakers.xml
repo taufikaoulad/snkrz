@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/dunk_grey" />
 
         <TextView
-            android:id="@+id/editTextNombreSneaker"
+            android:id="@+id/textNombreSneaker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="41dp"
@@ -40,7 +40,7 @@
             tools:ignore="TextContrastCheck" />
 
         <TextView
-            android:id="@+id/goSisgn"
+            android:id="@+id/textModeloSneaker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -48,11 +48,11 @@
             android:text="@string/grey_fog"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/imagenSneaker"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNombreSneaker"
+            app:layout_constraintTop_toBottomOf="@+id/textNombreSneaker"
             tools:ignore="TextContrastCheck" />
 
         <TextView
-            android:id="@+id/gooSisgn"
+            android:id="@+id/txtFechaLanzamiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -64,7 +64,7 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imagenSneaker"
-            app:layout_constraintTop_toBottomOf="@+id/goSisgn"
+            app:layout_constraintTop_toBottomOf="@+id/textModeloSneaker"
             tools:ignore="TextContrastCheck"
             />
 

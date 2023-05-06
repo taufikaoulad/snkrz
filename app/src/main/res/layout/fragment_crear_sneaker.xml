@@ -120,7 +120,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNombreSneaker"
+                android:id="@+id/textNombreSneaker"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/txtFechaLanzamiento"
+            android:id="@+id/txtDateLanzamiento"
             style="@style/SubLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtFechaLanzamiento" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDateLanzamiento" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

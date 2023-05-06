@@ -7,12 +7,12 @@
     <fragment
         android:id="@+id/pantallaPrincipalSneakerList"
         android:name="cat.copernic.taufik.snkrz.Fragment.PantallaPrincipalSneakerList"
-        android:label="fragment_pantalla_principal_sneaker_list"
+        android:label="SNKRZ"
         tools:layout="@layout/fragment_pantalla_principal_sneaker_list" />
     <fragment
         android:id="@+id/crearSneaker"
         android:name="cat.copernic.taufik.snkrz.Fragment.CrearSneaker"
-        android:label="CrearSneaker"
+        android:label="Crear Sneaker"
         tools:layout="@layout/fragment_crear_sneaker">
         <action
             android:id="@+id/action_crearSneaker_to_pantallaPrincipalSneakerList"
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/editarPerfil"
         android:name="cat.copernic.taufik.snkrz.Fragment.EditarPerfil"
-        android:label="fragment_editar_perfil"
+        android:label="Editar Perfil"
         tools:layout="@layout/fragment_editar_perfil">
         <action
             android:id="@+id/action_editarPerfil_to_perfil"
