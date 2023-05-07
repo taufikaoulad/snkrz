@@ -28,41 +28,39 @@
                 <TextView
                     android:id="@+id/CancelarDatosCrearSneaker"
                     style="@style/LabelEditText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="22dp"
                     android:text="@string/cancelar"
                     android:textColor="@color/white"
-                    android:textSize="19sp"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textEditarCrearSneaker"
+                    android:id="@+id/eliminarDatosCrearSneaker"
                     style="@style/LabelEditText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="@string/crear_sneaker"
-                    android:textColor="@color/black"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="22dp"
+                    android:text="Eliminar"
+                    android:textColor="@color/red"
                     android:textSize="22sp"
-                    app:layout_constraintEnd_toStartOf="@+id/GuardarDatosCrearSneaker"
                     app:layout_constraintStart_toEndOf="@+id/CancelarDatosCrearSneaker"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/GuardarDatosCrearSneaker"
                     style="@style/LabelEditText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="22dp"
                     android:text="@string/guardar"
                     android:textColor="@color/blue"
-                    android:textSize="19sp"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,11 +118,11 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textNombreSneaker"
+                android:id="@+id/edittextNombreSneaker"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

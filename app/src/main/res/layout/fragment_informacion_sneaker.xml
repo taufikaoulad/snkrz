@@ -38,7 +38,7 @@
                     app:srcCompat="@drawable/dunk_grey" />
 
                 <TextView
-                    android:id="@+id/textNombreSneaker"
+                    android:id="@+id/edittextNombreSneaker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="106dp"
@@ -60,7 +60,7 @@
                     android:fontFamily="sans-serif-black"
                     android:text="@string/grey_fog"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/textNombreSneaker"
+                    app:layout_constraintStart_toEndOf="@+id/edittextNombreSneaker"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
@@ -76,7 +76,7 @@
                     android:textColor="@color/gris"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textNombreSneaker"
+                    app:layout_constraintTop_toBottomOf="@+id/edittextNombreSneaker"
                     tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

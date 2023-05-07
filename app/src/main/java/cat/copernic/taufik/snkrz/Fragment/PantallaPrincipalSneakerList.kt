@@ -5,14 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import androidx.navigation.fragment.findNavController
 import cat.copernic.taufik.snkrz.databinding.FragmentPantallaPrincipalSneakerListBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.taufik.snkrz.Adapter.CustomAdapter
-import cat.copernic.taufik.snkrz.Provider.Provaider
-import cat.copernic.taufik.snkrz.R
-import kotlinx.android.synthetic.main.card_layout_sneakers.view.*
+import cat.copernic.taufik.snkrz.Provider.Provider
 
 
 class PantallaPrincipalSneakerList : Fragment() {
@@ -34,8 +30,8 @@ class PantallaPrincipalSneakerList : Fragment() {
     }
 
     private fun initRecyclerView(view: View){
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = CustomAdapter(Provaider.SneakerList)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context) // Establecemos el LinearLayoutManager al RecyclerView
+        binding.recyclerView.adapter = CustomAdapter(Provider.SneakerList) // Establecemos el adaptador personalizado al RecyclerView
 
     }
 }

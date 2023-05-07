@@ -26,27 +26,12 @@
                 style="@style/LabelEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
+                android:layout_marginStart="60dp"
                 android:layout_marginTop="23dp"
                 android:text="@string/cancelar"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textEditarPerfil"
-                style="@style/LabelEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="24dp"
-                android:text="@string/editar_perfil"
-                android:textColor="@color/blueforsnkrz"
                 android:textSize="22sp"
-                app:layout_constraintEnd_toStartOf="@+id/GuardarDatosPerfil"
-                app:layout_constraintStart_toEndOf="@+id/CancelarDatosPerfil"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -55,10 +40,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
-                android:layout_marginEnd="19dp"
+                android:layout_marginEnd="64dp"
                 android:text="@string/guardar"
                 android:textColor="@color/azul"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

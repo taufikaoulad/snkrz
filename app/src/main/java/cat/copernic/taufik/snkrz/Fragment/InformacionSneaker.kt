@@ -21,7 +21,7 @@ class InformacionSneaker : Fragment() {
         savedInstanceState: Bundle?): View? {
         _binding = FragmentInformacionSneakerBinding.inflate(inflater, container, false)
 
-        binding.textNombreSneaker.setText(args.sneaker.NombreSneaker)
+        binding.edittextNombreSneaker.setText(args.sneaker.NombreSneaker)
         binding.sneakerModel.setText(args.sneaker.ModelSneaker)
         binding.fechaLanzamiento.setText(args.sneaker.FechaLanzamiento)
         binding.precio.setText(args.sneaker.Precio)
