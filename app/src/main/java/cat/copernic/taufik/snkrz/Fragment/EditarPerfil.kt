@@ -1,6 +1,7 @@
 package cat.copernic.taufik.snkrz.Fragment
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
@@ -105,16 +106,11 @@ class EditarPerfil : Fragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
                     val inputStream = requireActivity().contentResolver.openInputStream(uri)
-                    val bitmap = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-                        val source = ImageDecoder.createSource(requireActivity().contentResolver, uri)
-                        ImageDecoder.decodeBitmap(source)
-                    } else {
-                        MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
-                    }
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
 
                     val user = auth.currentUser
                     val fileName = "imagen_perfil.jpg"
-                    val imageRef = storageRef.child("imagene/perfil/${user?.uid}/$fileName")
+                    val imageRef = storageRef.child("imagen/perfil/${user?.uid}/$fileName")
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                     val data = baos.toByteArray()
