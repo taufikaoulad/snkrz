@@ -25,8 +25,7 @@
             android:layout_marginTop="20dp"
             android:contentDescription="@string/descripcionImagenSneaker"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dunk_grey" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/edittextNombreSneaker"

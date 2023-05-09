@@ -2,9 +2,15 @@ package cat.copernic.taufik.snkrz.Provider
 
 import cat.copernic.taufik.snkrz.Model.sneaker
 
-class Provider {
+class list_sneakers {
     companion object {
-        // Objeto que contiene la lista de zapatillas
+        val list_sneaker = ArrayList<sneaker>(
+
+        )
+    }
+}
+
+/*// Objeto que contiene la lista de zapatillas
         val SneakerList = listOf<sneaker>(
             sneaker(
                 "EE1234-102",
@@ -70,6 +76,4 @@ class Provider {
                 "2022-08-10",
                 "El favorito de todos los tiempos de la cultura pop"
             )
-        )
-    }
-}
+        )*/

@@ -2,15 +2,12 @@ package cat.copernic.taufik.snkrz.Fragment
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -119,12 +116,14 @@ class EditarPerfil : Fragment() {
 
                     withContext(Dispatchers.Main) {
                         binding.imgPerfilPerfil.setImageBitmap(bitmap)
-                        Toast.makeText(requireContext(), "Imagen subida correctamente", Toast.LENGTH_SHORT).show()
+                        mostrarMensaje("Imagen subida correctamente")
+                        //Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
+                        mostrarMensaje("Error al subir la imagen")
+                        //Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

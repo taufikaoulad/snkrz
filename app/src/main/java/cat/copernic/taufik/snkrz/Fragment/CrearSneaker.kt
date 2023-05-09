@@ -2,15 +2,12 @@ package cat.copernic.taufik.snkrz.Fragment
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,12 +16,9 @@ import cat.copernic.taufik.snkrz.R
 import cat.copernic.taufik.snkrz.databinding.FragmentCrearSneakerBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_crear_sneaker.*
-import kotlinx.android.synthetic.main.fragment_crear_sneaker.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -40,10 +34,9 @@ class CrearSneaker : Fragment() {
 
     private var bd = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
-    val user = Firebase.auth.currentUser
+    //val user = Firebase.auth.currentUser
 
     private val storageRef = FirebaseStorage.getInstance().reference
-    private lateinit var imageUri: Uri
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -143,12 +136,13 @@ class CrearSneaker : Fragment() {
 
                     withContext(Dispatchers.Main) {
                         // Actualizar la imagen de la sneaker en la interfaz de usuario si es necesario
-                        Toast.makeText(requireContext(), "Imagen subida correctamente", Toast.LENGTH_SHORT).show()
+                        mostrarMensaje("Imagen subida correctamente")
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
+                        mostrarMensaje("Error al subir la imagen")
+                        //Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
