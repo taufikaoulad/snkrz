@@ -15,6 +15,7 @@ import cat.copernic.taufik.snkrz.Provider.list_sneakers
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 
@@ -27,7 +28,11 @@ class PantallaPrincipalSneakerList : Fragment() {
     private lateinit var adapter: CustomAdapter
     private var isRecyclerViewInitialized = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentPantallaPrincipalSneakerListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,7 +66,11 @@ class PantallaPrincipalSneakerList : Fragment() {
     }
 
     private fun recycleServicios() {
-        bd.collection("Sneakers").get().addOnSuccessListener { documents ->
+        lifecycleScope.launch(Dispatchers.IO) {
+            val documents = withContext(Dispatchers.IO) {
+                bd.collection("Sneakers").get().await()
+            }
+            val newItems = mutableListOf<sneaker>()
             for (document in documents) {
                 val wallItem = sneaker(
                     CodigoReferencia = document["codigoReferencia"] as? String ?: "",
@@ -76,7 +85,10 @@ class PantallaPrincipalSneakerList : Fragment() {
                     listMutable.add(wallItem)
                 }
             }
-            adapter.notifyDataSetChanged()
+            withContext(Dispatchers.Main) {
+                listMutable.addAll(newItems)
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 

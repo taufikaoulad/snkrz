@@ -54,9 +54,9 @@ class EditarPerfil : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        carregarImatge()
-
         auth = FirebaseAuth.getInstance()
+
+        carregarImatge()
 
         binding.GuardarDatosPerfil.setOnClickListener {
 

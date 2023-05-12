@@ -48,10 +48,25 @@
         <argument
             android:name="sneaker"
             app:argType="cat.copernic.taufik.snkrz.Model.sneaker" />
+        <action
+            android:id="@+id/action_informacionSneaker_to_gestionSneakers"
+            app:destination="@id/gestionSneakers" />
     </fragment>
     <fragment
         android:id="@+id/politicaPrivacidad"
         android:name="cat.copernic.taufik.snkrz.Fragment.PoliticaPrivacidad"
         android:label="PoliticaPrivacidad"
         tools:layout="@layout/fragment_politica_privacidad"/>
+    <fragment
+        android:id="@+id/gestionSneakers"
+        android:name="cat.copernic.taufik.snkrz.Fragment.GestionSneakers"
+        android:label="GestionSneakers"
+        tools:layout="@layout/fragment_gestion_sneakers">
+        <argument
+            android:name="sneaker"
+            app:argType="cat.copernic.taufik.snkrz.Model.sneaker" />
+        <action
+            android:id="@+id/action_gestionSneakers_to_pantallaPrincipalSneakerList"
+            app:destination="@id/pantallaPrincipalSneakerList" />
+    </fragment>
 </navigation>

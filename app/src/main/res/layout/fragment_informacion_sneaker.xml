@@ -16,10 +16,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="240dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@id/Referencia"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:cardCornerRadius="20dp">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -89,14 +89,14 @@
                     app:srcCompat="@drawable/ic_round_favorite_border_24" />
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:id="@+id/numeroDeMeGustas"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="13dp"
-                    android:hint="."
-                    android:textSize="16sp"
+                    android:hint=""
                     android:textColorHint="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/like_btn" />
 
@@ -109,18 +109,18 @@
             android:layout_width="1dp"
             android:layout_height="1dp"
             android:layout_marginTop="220dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/referencia"
             app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/referencia" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewInfromacion1"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:id="@+id/cardViewInfromacion1"
-            app:cardCornerRadius="20dp"
             android:layout_margin="14dp"
             app:cardBackgroundColor="@color/colorbox"
+            app:cardCornerRadius="20dp"
             app:layout_constraintTop_toBottomOf="@+id/Referencia">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,7 +137,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/divider"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TextContrastCheck"/>
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/precio"
@@ -237,12 +237,12 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewInfromacion2"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:id="@+id/cardViewInfromacion2"
-            app:cardCornerRadius="20dp"
             android:layout_margin="14dp"
             app:cardBackgroundColor="@color/colorbox"
+            app:cardCornerRadius="20dp"
             app:layout_constraintTop_toBottomOf="@+id/cardViewInfromacion1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -253,11 +253,11 @@
                     android:id="@+id/editTextdescripcionSneaker"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="20dp"
                     android:fontFamily="sans-serif"
-                    android:text="@string/las_nike_dunk_originales_nacieron_realmente_en_1985_y_fueron_dise_adas_por_peter_moore_las_zapatillas_inclu_an_una_novedad_distintiva_y_es_que_llegaron_en_una_amplia_variedad_de_colores_una_caracter_stica_que_acabar_a_marcando_la_identidad_de_la_silueta"
                     android:justificationMode="inter_word"
                     android:lineSpacingExtra="2sp"
+                    android:padding="20dp"
+                    android:text="@string/las_nike_dunk_originales_nacieron_realmente_en_1985_y_fueron_dise_adas_por_peter_moore_las_zapatillas_inclu_an_una_novedad_distintiva_y_es_que_llegaron_en_una_amplia_variedad_de_colores_una_caracter_stica_que_acabar_a_marcando_la_identidad_de_la_silueta"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -268,6 +268,44 @@
 
         </androidx.cardview.widget.CardView>
 
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewInfromacion3"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_margin="14dp"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="@color/colorbox"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewInfromacion2"
+            tools:layout_editor_absoluteX="14dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGestionarSneaker"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/archivo_black"
+                    android:text="Gestionar Sneaker"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="3dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

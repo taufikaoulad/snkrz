@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import cat.copernic.taufik.snkrz.R
 import cat.copernic.taufik.snkrz.databinding.FragmentInformacionSneakerBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -15,8 +16,8 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.fragment_crear_sneaker.*
 import java.io.File
+import androidx.navigation.fragment.findNavController
 
 
 class InformacionSneaker : Fragment() {
@@ -29,7 +30,6 @@ class InformacionSneaker : Fragment() {
     private var bd = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
 
-    private var storage = FirebaseStorage.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
 
     private var meGusta = false
@@ -58,14 +58,12 @@ class InformacionSneaker : Fragment() {
             binding.imagenSneaker.setImageBitmap(mapaBits)
 
         }
-
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         auth = FirebaseAuth.getInstance()
 
         meGustaDocument = bd.collection("Sneakers")
@@ -73,9 +71,15 @@ class InformacionSneaker : Fragment() {
             .collection("MeGusta")
             .document(auth.currentUser?.uid.toString())
 
-        // Verificar si el usuario actual ya dio "Me gusta"
+
         meGustaDocument.get().addOnSuccessListener { documentSnapshot ->
             meGusta = documentSnapshot.exists()
+            obtenerNumeroMeGustas() // Obtener el número de "me gusta" inicial
+        }
+
+        binding.btnGestionarSneaker.setOnClickListener {
+            val action = InformacionSneakerDirections.actionInformacionSneakerToGestionSneakers(args.sneaker)
+            findNavController().navigate(action)
         }
 
         binding.likeBtn.setOnClickListener {
@@ -84,6 +88,7 @@ class InformacionSneaker : Fragment() {
                 meGustaDocument.delete().addOnSuccessListener {
                     meGusta = false
                     Toast.makeText(requireContext(), "Me gusta eliminado", Toast.LENGTH_SHORT).show()
+                    obtenerNumeroMeGustas()
                 }.addOnFailureListener { exception ->
                     // Error al eliminar, maneja el error apropiadamente
                     Toast.makeText(requireContext(), "Error al eliminar el Me gusta", Toast.LENGTH_SHORT).show()
@@ -94,6 +99,7 @@ class InformacionSneaker : Fragment() {
                     .addOnSuccessListener {
                         meGusta = true
                         Toast.makeText(requireContext(), "Me gusta agregado", Toast.LENGTH_SHORT).show()
+                        obtenerNumeroMeGustas()
                     }.addOnFailureListener { exception ->
                         // Error al agregar, maneja el error apropiadamente
                         Toast.makeText(requireContext(), "Error al agregar el Me gusta", Toast.LENGTH_SHORT).show()
@@ -101,4 +107,20 @@ class InformacionSneaker : Fragment() {
             }
         }
     }
+
+    private fun obtenerNumeroMeGustas() {
+        bd.collection("Sneakers")
+            .document(args.sneaker.CodigoReferencia)
+            .collection("MeGusta")
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val meGustasSize = querySnapshot.size()
+                binding.numeroDeMeGustas.text = meGustasSize.toString()
+            }
+            .addOnFailureListener { exception ->
+                // Manejar el error de consulta apropiadamente
+                Toast.makeText(requireContext(), "Error al obtener el número de Me gusta", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 }

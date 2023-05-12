@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".Fragment.CrearSneaker">
+        tools:context=".Fragment.GestionSneakers">
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewEditarPerfil"
@@ -25,27 +26,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
                 <TextView
-                    android:id="@+id/CancelarDatosCrearSneaker"
+                    android:id="@+id/eliminarDatosGestionaSneaker"
                     style="@style/LabelEditText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="22dp"
-                    android:text="@string/cancelar"
-                    android:textColor="@color/white"
+                    android:text="Eliminar"
+                    android:textColor="@color/red"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/GuardarDatosCrearSneaker"
+                    android:id="@+id/GuardarDatosGestionaSneaker"
                     style="@style/LabelEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_marginEnd="76dp"
-                    android:text="@string/guardar"
+                    android:layout_marginEnd="70dp"
+                    android:text="Modificar"
                     android:textColor="@color/blue"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +79,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextModeloSneaker"
+                android:id="@+id/editTextModeloGestio"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,7 +107,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edittextNombreSneaker"
+                android:id="@+id/edittextNombreGestio"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +135,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPrecioCrearSneaker"
+                android:id="@+id/editTextPrecioCrearGestio"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,7 +163,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextCodRefSnkr"
+                android:id="@+id/editTextCodRefGestio"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -189,7 +191,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextdescripcionSneaker"
+                android:id="@+id/editTextdescripcionGestio"
                 style="@style/EditTextBlancoLogReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,7 +199,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/txtDateLanzamiento"
+            android:id="@+id/txtDateLanzamientoGestio"
             style="@style/SubLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,7 +211,7 @@
 
 
         <DatePicker
-            android:id="@+id/fechaEvento"
+            android:id="@+id/fechaEventoGestio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -217,10 +219,10 @@
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDateLanzamiento" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDateLanzamientoGestio" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddImage"
+            android:id="@+id/btnAddImageGestio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -229,13 +231,13 @@
             android:textColor="@color/white"
             app:cornerRadius="10dp"
             app:icon="@drawable/ic_round_add_photo_alternate_24"
-            app:layout_constraintStart_toEndOf="@+id/txtImage"
-            app:layout_constraintTop_toBottomOf="@+id/fechaEvento"
+            app:layout_constraintStart_toEndOf="@+id/txtImageGestio"
+            app:layout_constraintTop_toBottomOf="@+id/fechaEventoGestio"
             app:strokeColor="@color/white"
             app:strokeWidth="3dp" />
 
         <TextView
-            android:id="@+id/txtImage"
+            android:id="@+id/txtImageGestio"
             style="@style/SubLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -245,7 +247,8 @@
             android:text="@string/imagen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fechaEvento" />
+            app:layout_constraintTop_toBottomOf="@+id/fechaEventoGestio" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
