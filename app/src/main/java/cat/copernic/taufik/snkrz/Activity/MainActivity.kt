@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity(){
             setOf(
                 id.pantallaPrincipalSneakerList,
                 id.perfil,
-                id.crearSneaker
+                id.crearSneaker,
+                id.politicaPrivacidad
             ), drawerLayout
         )
 

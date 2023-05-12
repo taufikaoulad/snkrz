@@ -4,10 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,11 +20,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
 
 class EditarPerfil : Fragment() {
@@ -33,9 +37,11 @@ class EditarPerfil : Fragment() {
     private val storageRef = FirebaseStorage.getInstance().reference
 
     val email = Firebase.auth.currentUser?.email
-    private var bd = FirebaseFirestore.getInstance()
+    private var db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
     val user = Firebase.auth.currentUser
+
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +53,8 @@ class EditarPerfil : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        carregarImatge()
 
         auth = FirebaseAuth.getInstance()
 
@@ -68,6 +76,31 @@ class EditarPerfil : Fragment() {
         binding.txtCambiarFoto.setOnClickListener {
             getContent.launch("image/*")
         }
+
+        val email = FirebaseAuth.getInstance().currentUser!!.email
+
+        lifecycleScope.launch {
+            try {
+                val snapshot = withContext(Dispatchers.IO) {
+                    db.collection("Usuarios").document(email.toString()).get().await()
+                }
+                val data = snapshot.data
+                if (data != null) {
+
+                    val nombre = data["nombre"]?.toString()
+                    val apellido = data["apellido"]?.toString()
+                    val dni = data["dni"]?.toString()
+                    val telefono = data["telefono"]?.toString()
+
+                    binding.NombreEditarPerfil.text = Editable.Factory.getInstance().newEditable(nombre)
+                    binding.ApellidoEditarPerfil.text = Editable.Factory.getInstance().newEditable(apellido)
+                    binding.DNIEditarPerfil.text = Editable.Factory.getInstance().newEditable(dni)
+                    binding.TelefonoEditarPerfil.text = Editable.Factory.getInstance().newEditable(telefono)
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -80,14 +113,15 @@ class EditarPerfil : Fragment() {
         var nombre = binding.NombreEditarPerfil.text.toString()
         var apellido = binding.ApellidoEditarPerfil.text.toString()
         var dni = binding.DNIEditarPerfil.text.toString()
-        var telefono = binding.TelefonoEditarPerfil.text.toString().toInt()
+        val telefonoText = binding.TelefonoEditarPerfil.text.toString()
+        val telefono = if (telefonoText.isNotEmpty()) telefonoText.toInt() else 0
 
         return Usuario(email.toString(), Email, nombre, apellido, dni, telefono)
     }
 
     fun modificarUsuario(user: Usuario) {
         if (email != null) {
-            bd.collection("Usuarios").document(email).set(user)
+            db.collection("Usuarios").document(email).set(user)
                 .addOnSuccessListener {
                     findNavController().navigate(R.id.action_editarPerfil_to_perfil)
                     mostrarMensaje("El perfil se ha modificado correctamente")
@@ -125,6 +159,30 @@ class EditarPerfil : Fragment() {
                         mostrarMensaje("Error al subir la imagen")
                         //Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
                     }
+                }
+            }
+        }
+    }
+
+    private fun carregarImatge(){
+        auth = Firebase.auth
+        val user = auth.currentUser
+        val fileName = "imagen_perfil.jpg"
+        var adrecaImatge = storageRef.child("imagen/perfil/${user?.uid}/$fileName")
+
+        val fitxerTemporal = File.createTempFile("temp", null)
+
+        lifecycleScope.launch(Dispatchers.IO) { // Ejecuta las tareas en un hilo de fondo
+            try {
+                adrecaImatge.getFile(fitxerTemporal).await() // Espera a que se complete la descarga del archivo
+                val mapaBits = BitmapFactory.decodeFile(fitxerTemporal.absolutePath)
+
+                withContext(Dispatchers.Main) { // Actualiza la interfaz de usuario en el hilo principal
+                    binding.imgPerfilPerfil.setImageBitmap(mapaBits)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "La carrega de la imatge ha fallat", Toast.LENGTH_LONG).show()
                 }
             }
         }

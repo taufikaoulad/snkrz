@@ -11,7 +11,7 @@
         android:layout_width="412dp"
         android:layout_height="125dp"
         android:contentDescription="@string/rectangulo_decorativo_perfil"
-        android:src="@drawable/bg_color2"
+        android:src="@color/colorbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,6 @@
         android:layout_height="150dp"
         android:layout_marginTop="45dp"
         android:contentDescription="@string/imagen_perfil"
-        android:src="@drawable/imagenparaperfil"
         app:civ_border_color="@color/blueforsnkrz"
         app:civ_border_width="7dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,10 +34,10 @@
         style="@style/LabelEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/nombre_de_usuario"
+        android:layout_marginTop="20dp"
+        android:text="@string/nombre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPerfilPerfil" />
 
@@ -81,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
-        android:text="Teléfono"
+        android:text="TELÉFONO"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEditarPerfil" />
 

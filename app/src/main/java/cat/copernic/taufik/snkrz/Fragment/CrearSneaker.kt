@@ -51,11 +51,11 @@ class CrearSneaker : Fragment() {
             getContent.launch("image/*")
         }
 
-        binding.eliminarDatosCrearSneaker.setOnClickListener {
+        /*binding.eliminarDatosCrearSneaker.setOnClickListener {
             val codigoRef = binding.editTextCodRefSnkr.text.toString()
             eliminarSneaker(codigoRef)
             findNavController().navigate(R.id.action_crearSneaker_to_pantallaPrincipalSneakerList)
-        }
+        }*/
 
         binding.CancelarDatosCrearSneaker.setOnClickListener {
             findNavController().navigate(R.id.action_crearSneaker_to_pantallaPrincipalSneakerList)
@@ -109,7 +109,7 @@ class CrearSneaker : Fragment() {
                 Sneaker.Descripcion.isNotEmpty() && Sneaker.FechaLanzamiento.isNotEmpty()
     }
 
-    fun eliminarSneaker(codigoRef: String) {
+    /*fun eliminarSneaker(codigoRef: String) {
         bd.collection("Sneakers").document(codigoRef).delete()
             .addOnSuccessListener {
                 mostrarMensaje("La sneaker se ha eliminado correctamente")
@@ -117,7 +117,7 @@ class CrearSneaker : Fragment() {
             .addOnFailureListener {
                 mostrarMensaje("No se ha podido eliminar la sneaker")
             }
-    }
+    }*/
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {

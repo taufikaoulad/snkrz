@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueforsnkrz">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".Fragment.PoliticaPrivacidad">
+
+        <TextView
+            android:id="@+id/editTextdescripcionSneaker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/politicaPrivacidad"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -25,9 +25,9 @@ class PantallaPrincipalSneakerList : Fragment() {
     private val bd = FirebaseFirestore.getInstance()
     private val listMutable: MutableList<sneaker> = mutableListOf()
     private lateinit var adapter: CustomAdapter
+    private var isRecyclerViewInitialized = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentPantallaPrincipalSneakerListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -40,12 +40,9 @@ class PantallaPrincipalSneakerList : Fragment() {
     }
 
     private fun initRecyclerView() {
-        if (listMutable.isEmpty()) {
-            recycleServicios()
-        } else {
-            binding.recyclerView.layoutManager = LinearLayoutManager(context)
-            binding.recyclerView.adapter = adapter
-        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = adapter
+        isRecyclerViewInitialized = true
     }
 
     private fun listenForDataChanges() {
@@ -55,35 +52,31 @@ class PantallaPrincipalSneakerList : Fragment() {
                 return@addSnapshotListener
             }
             for (dc in snapshot!!.documentChanges) {
-                listMutable.clear()
-                recycleServicios()
-                adapter.notifyDataSetChanged()
+                if (isRecyclerViewInitialized) {
+                    listMutable.clear()
+                    recycleServicios()
+                }
             }
         }
     }
 
     private fun recycleServicios() {
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                bd.collection("Sneakers").get().addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        val wallItem = sneaker(
-                            CodigoReferencia = document["codigoReferencia"] as? String ?: "",
-                            NombreSneaker = document["nombreSneaker"] as? String ?: "",
-                            ModelSneaker = document["modelSneaker"] as? String ?: "",
-                            Precio = document["precio"] as? String ?: "",
-                            FechaLanzamiento = document["fechaLanzamiento"] as? String ?: "",
-                            Descripcion = document["descripcion"] as? String ?: "",
-                            meGusta = document["MeGusta"] as? List<meGusta> ?: emptyList()
-                        )
-                        if (listMutable.none { it.CodigoReferencia == wallItem.CodigoReferencia }) {
-                            listMutable.add(wallItem)
-                        }
-                    }
-                    binding.recyclerView.layoutManager = LinearLayoutManager(context)
-                    binding.recyclerView.adapter = adapter
+        bd.collection("Sneakers").get().addOnSuccessListener { documents ->
+            for (document in documents) {
+                val wallItem = sneaker(
+                    CodigoReferencia = document["codigoReferencia"] as? String ?: "",
+                    NombreSneaker = document["nombreSneaker"] as? String ?: "",
+                    ModelSneaker = document["modelSneaker"] as? String ?: "",
+                    Precio = document["precio"] as? String ?: "",
+                    FechaLanzamiento = document["fechaLanzamiento"] as? String ?: "",
+                    Descripcion = document["descripcion"] as? String ?: "",
+                    meGusta = document["MeGusta"] as? List<meGusta> ?: emptyList()
+                )
+                if (listMutable.none { it.CodigoReferencia == wallItem.CodigoReferencia }) {
+                    listMutable.add(wallItem)
                 }
             }
+            adapter.notifyDataSetChanged()
         }
     }
 

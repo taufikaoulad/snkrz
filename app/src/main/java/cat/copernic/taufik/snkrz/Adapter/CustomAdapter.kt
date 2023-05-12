@@ -40,7 +40,7 @@ class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter
                 val maxLength = 18 // Número máximo de caracteres permitidos
                 val ellipsis = "..." // Texto de tres puntos
 
-                // Recortar el nombre de la sneaker si excede la longitud máxima y agregar puntos suspensivos
+                // Recortamos el nombre de la sneaker si excede la longitud máxima y agregar puntos suspensivos
                 val nombreSneaker = if (this.NombreSneaker.length > maxLength) {
                     this.NombreSneaker.substring(0, maxLength - ellipsis.length) + ellipsis
                 } else {
@@ -52,19 +52,19 @@ class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter
 
                 auth = Firebase.auth
 
-                var adrecaImatge = storageRef.child("imagen/sneaker/$CodigoReferencia.jpg") // Corrección: agregar "$CodigoReferencia.jpg" al final
+                var adrecaImatge = storageRef.child("imagen/sneaker/$CodigoReferencia.jpg")
                 var fitxerTemporal = File.createTempFile("temp", null)
 
                 adrecaImatge.getFile(fitxerTemporal).addOnSuccessListener {
                     val mapaBits = BitmapFactory.decodeFile(fitxerTemporal.absolutePath)
                     binding.imagenSneaker.setImageBitmap(mapaBits)
                 }.addOnFailureListener {
-                    // Manejar la falla al cargar la imagen
+                    // Comentar sin Toast
                 }
 
-                // Configurar el clic en el elemento del RecyclerView
+                // Configuramos el clic en el elemento del RecyclerView
                 binding.CardViewSneaker.setOnClickListener { view ->
-                    safeargs(sneakerList.get(position), view) // Pasar los datos de la sneaker al método safeargs
+                    safeargs(sneakerList.get(position), view) // Pasamos los datos de la sneaker al método safeargs
                 }
             }
         }

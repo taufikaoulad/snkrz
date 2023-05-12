@@ -49,4 +49,9 @@
             android:name="sneaker"
             app:argType="cat.copernic.taufik.snkrz.Model.sneaker" />
     </fragment>
+    <fragment
+        android:id="@+id/politicaPrivacidad"
+        android:name="cat.copernic.taufik.snkrz.Fragment.PoliticaPrivacidad"
+        android:label="PoliticaPrivacidad"
+        tools:layout="@layout/fragment_politica_privacidad"/>
 </navigation>

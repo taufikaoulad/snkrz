@@ -19,6 +19,11 @@
             android:icon="@drawable/ic_round_add_circle_24"
             android:title="@string/crear_snkrz" />
 
+        <item
+            android:id="@+id/politicaPrivacidad"
+            android:icon="@drawable/ic_round_lock_24"
+            android:title="@string/politicaprivacidad" />
+
 
     </group>
 

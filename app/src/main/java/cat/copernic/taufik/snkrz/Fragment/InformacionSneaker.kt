@@ -1,5 +1,6 @@
 package cat.copernic.taufik.snkrz.Fragment
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +10,13 @@ import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import cat.copernic.taufik.snkrz.databinding.FragmentInformacionSneakerBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_crear_sneaker.*
+import java.io.File
 
 
 class InformacionSneaker : Fragment() {
@@ -23,6 +28,9 @@ class InformacionSneaker : Fragment() {
 
     private var bd = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
+
+    private var storage = FirebaseStorage.getInstance()
+    private val storageRef = FirebaseStorage.getInstance().reference
 
     private var meGusta = false
     private lateinit var meGustaDocument: DocumentReference
@@ -37,6 +45,19 @@ class InformacionSneaker : Fragment() {
         binding.precio.setText(args.sneaker.Precio)
         binding.editTextdescripcionSneaker.setText(args.sneaker.Descripcion)
         binding.Identificador.setText(args.sneaker.CodigoReferencia)
+
+        auth = Firebase.auth
+
+        var adrecaImatge = storageRef.child("imagen/sneaker/${args.sneaker.CodigoReferencia}.jpg")
+        var fitxerTemporal = File.createTempFile("temp",null)
+
+        adrecaImatge.getFile(fitxerTemporal).addOnSuccessListener { //La carrega a tingut èxit..
+
+            val mapaBits = BitmapFactory.decodeFile(fitxerTemporal.absolutePath)
+
+            binding.imagenSneaker.setImageBitmap(mapaBits)
+
+        }
 
         return binding.root
     }
