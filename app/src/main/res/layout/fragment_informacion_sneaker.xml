@@ -61,7 +61,8 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/edittextNombreSneaker"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck"
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/txtSneaker"
@@ -83,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="13dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_round_favorite_border_24" />
@@ -157,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="36dp"
-                    android:text="€"
+                    android:text="@string/tipoMoneda"
                     app:layout_constraintBottom_toTopOf="@+id/divider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -192,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="36dp"
-                    android:text="19/01/2023"
+                    android:text="@string/_19_01_2023"
                     app:layout_constraintBottom_toTopOf="@+id/divider2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider"
@@ -214,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
-                    android:text="IDENTIFICADOR"
+                    android:text="@string/identificador"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider2"
@@ -226,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="36dp"
-                    android:text="DD1391-103"
+                    android:text="@string/dd1391_103"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider2"
@@ -293,7 +294,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/archivo_black"
-                    android:text="Gestionar Sneaker"
+                    android:text="@string/gestionar_sneaker"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:cornerRadius="10dp"

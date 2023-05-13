@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import cat.copernic.taufik.snkrz.R
@@ -26,7 +27,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-
 
 class InformacionSneaker : Fragment() {
 
@@ -111,6 +111,12 @@ class InformacionSneaker : Fragment() {
         meGustaDocument.get().addOnSuccessListener { documentSnapshot ->
             meGusta = documentSnapshot.exists()
             obtenerNumeroMeGustas() // Obtener el número de "me gusta" inicial
+
+            if (meGusta) {
+                binding.likeBtn.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red))
+            } else {
+                binding.likeBtn.clearColorFilter()
+            }
         }
 
         binding.btnGestionarSneaker.setOnClickListener {
@@ -125,6 +131,7 @@ class InformacionSneaker : Fragment() {
                     meGusta = false
                     Toast.makeText(requireContext(), "Me gusta eliminado", Toast.LENGTH_SHORT).show()
                     obtenerNumeroMeGustas()
+                    binding.likeBtn.clearColorFilter()
                 }.addOnFailureListener { exception ->
                     // Error al eliminar, maneja el error apropiadamente
                     Toast.makeText(requireContext(), "Error al eliminar el Me gusta", Toast.LENGTH_SHORT).show()
@@ -136,6 +143,7 @@ class InformacionSneaker : Fragment() {
                         meGusta = true
                         Toast.makeText(requireContext(), "Me gusta agregado", Toast.LENGTH_SHORT).show()
                         obtenerNumeroMeGustas()
+                        binding.likeBtn.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red)) // Aplicar el filtro de color rojo
                     }.addOnFailureListener { exception ->
                         // Error al agregar, maneja el error apropiadamente
                         Toast.makeText(requireContext(), "Error al agregar el Me gusta", Toast.LENGTH_SHORT).show()
@@ -158,5 +166,4 @@ class InformacionSneaker : Fragment() {
                 //Toast.makeText(requireContext(), "Error al obtener el número de Me gusta", Toast.LENGTH_SHORT).show()
             }
     }
-
 }

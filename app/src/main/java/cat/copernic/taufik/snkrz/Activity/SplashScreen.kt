@@ -18,8 +18,11 @@ class SplashScreen : AppCompatActivity() {
         supportActionBar?.hide()
 
         val splashAnimation = AnimationUtils.loadAnimation(this, R.anim.asset_fade_in)
+        val splashAnimation2 = AnimationUtils.loadAnimation(this, R.anim.asset_fade_in_2)
         //comentar
-        LogoSnkr.startAnimation(splashAnimation)
+        LetrasSNKRZ.startAnimation(splashAnimation)
+        byTaufik.startAnimation(splashAnimation)
+        LogoSnkr.startAnimation(splashAnimation2)
         LogoSnkrTransparente.startAnimation(splashAnimation)
         progressBar.startAnimation(splashAnimation)
 

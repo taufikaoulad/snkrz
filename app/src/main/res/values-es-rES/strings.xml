@@ -1,6 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SNKRZ</string>
     <string name="logo_snkrz">Logo_SNKRZ</string>
+    <string name="inicio_de_sesión">Inicio de sesión</string>
+    <string name="recuperar_contrase_a">Recuperar Contraseña</string>
     <string name="email">Email</string>
     <string name="volver_a_login">Volver a Login</string>
     <string name="nombre">Nombre</string>
@@ -44,14 +47,14 @@
     <string name="dni">DNI</string>
     <string name="descripci_n">Descripción</string>
     <string name="perfil">Perfil</string>
+    <string name="crear_snkrz">Crear Snkrz</string>
     <string name="inicio">Inicio</string>
     <string name="cerrar_sesi_n">Cerrar sesión</string>
     <string name="imagen_snkrz">Imagen Snkrz</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imagen">Imagen</string>
     <string name="politicaPrivacidad">Política de Privacidad de SNKRZ Fecha de vigencia: [Fecha de entrada en vigencia] En SNKRZ, nos comprometemos a proteger la privacidad de nuestros usuarios y garantizar la seguridad de la información personal que nos proporcionan. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos la información personal que recopilamos a través de nuestro sitio web y aplicaciones móviles. Al utilizar nuestros servicios, aceptas los términos y condiciones establecidos en esta política. Información personal recopilada Recopilamos información personal de nuestros usuarios de varias formas, incluyendo, pero no limitado a: Información de contacto: Nombre, dirección de correo electrónico, número de teléfono, dirección postal. Información de registro: Nombre de usuario, contraseña. Información de pago: Detalles de tarjeta de crédito o débito, información de facturación. Información de perfil: Preferencias personales, tamaño de calzado, historial de compras. Uso de la información recopilada Utilizamos la información personal recopilada para los siguientes fines: Procesar y completar transacciones de compra. Personalizar y mejorar la experiencia del usuario. Enviar información relacionada con el pedido, como confirmaciones y actualizaciones de envío. Proporcionar servicio al cliente y soporte técnico. Enviar correos electrónicos promocionales y boletines informativos (con tu consentimiento expreso). Mejorar nuestros productos y servicios. Compartir información personal No vendemos, alquilamos ni compartimos información personal con terceros para sus propósitos de marketing sin tu consentimiento expreso. Sin embargo, podemos compartir información personal en las siguientes circunstancias: Proveedores de servicios: Trabajamos con terceros de confianza para proporcionar servicios como pagos, envío de productos y análisis de datos. Estos proveedores de servicios tienen acceso a la información personal necesaria para realizar sus funciones, pero no pueden utilizarla para otros fines. Cumplimiento legal: Podemos divulgar información personal si así lo exige la ley o si creemos de buena fe que dicha divulgación es necesaria para cumplir con un procedimiento legal o proteger los derechos, la propiedad o la seguridad de SNKRZ, sus usuarios u otros. Seguridad de la información Implementamos medidas de seguridad técnicas y organizativas adecuadas para proteger la información personal contra pérdida, uso indebido y acceso no autorizado. Sin embargo, ten en cuenta que ningún sistema de transmisión o almacenamiento de datos es completamente seguro. Opciones de privacidad y acceso a la información personal Puedes acceder, corregir o eliminar la información personal que nos has proporcionado en cualquier momento. Si deseas hacerlo, contáctanos utilizando los datos de contacto que se proporcionan al final de esta política. Cookies y tecnologías similares Utilizamos cookies y tecnologías similares para mejorar la funcionalidad y la experiencia del usuario en nuestro sitio web y aplicaciones móviles. Puedes ajustar la configuración de cookies en tu navegador web para administrar tus preferencias. Cambios en la Política de Privacidad Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Cualquier cambio entrará en vigencia a partir de la fecha de publicación actualizada en nuestro sitio web.</string>
-    <string name="politicaprivacidad">Politica Privacidad</string>
+    <string name="politicaprivacidad">PoliticaPrivacidad</string>
     <string name="a_adir_imagen">Añadir Imagen</string>
     <string name="eliminar">Eliminar</string>
     <string name="modificar">Modificar</string>
@@ -60,7 +63,4 @@
     <string name="identificador">IDENTIFICADOR</string>
     <string name="dd1391_103">DD1391-103</string>
     <string name="gestionar_sneaker">Gestionar Sneaker</string>
-    <string name="inicio_de_sesión">Inicio de sesión</string>
-    <string name="recuperar_contrase_a">Recuperar Contraseña</string>
-    <string name="crear_snkrz">Crear Snkrz</string>
 </resources>

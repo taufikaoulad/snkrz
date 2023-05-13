@@ -20,7 +20,9 @@
         tools:layout="@layout/fragment_crear_sneaker">
         <action
             android:id="@+id/action_crearSneaker_to_pantallaPrincipalSneakerList"
-            app:destination="@id/pantallaPrincipalSneakerList" />
+            app:destination="@id/pantallaPrincipalSneakerList"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/perfil"
@@ -38,7 +40,9 @@
         tools:layout="@layout/fragment_editar_perfil">
         <action
             android:id="@+id/action_editarPerfil_to_perfil"
-            app:destination="@id/perfil" />
+            app:destination="@id/perfil"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/informacionSneaker"
@@ -67,6 +71,8 @@
             app:argType="cat.copernic.taufik.snkrz.Model.sneaker" />
         <action
             android:id="@+id/action_gestionSneakers_to_pantallaPrincipalSneakerList"
-            app:destination="@id/pantallaPrincipalSneakerList" />
+            app:destination="@id/pantallaPrincipalSneakerList"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>
