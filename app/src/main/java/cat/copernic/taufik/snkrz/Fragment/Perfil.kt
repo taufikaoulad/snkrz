@@ -90,7 +90,7 @@ class Perfil : Fragment() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "La carrega de la imatge ha fallat", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "La carrega de la imatge ha fallat", Toast.LENGTH_LONG).show()
                 }
             }
         }

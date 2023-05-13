@@ -2,11 +2,13 @@ package cat.copernic.taufik.snkrz.Fragment
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import cat.copernic.taufik.snkrz.R
 import cat.copernic.taufik.snkrz.databinding.FragmentInformacionSneakerBinding
@@ -18,6 +20,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_informacion_sneaker.*
+import kotlinx.android.synthetic.main.fragment_informacion_sneaker.view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class InformacionSneaker : Fragment() {
@@ -34,6 +42,7 @@ class InformacionSneaker : Fragment() {
 
     private var meGusta = false
     private lateinit var meGustaDocument: DocumentReference
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -58,6 +67,7 @@ class InformacionSneaker : Fragment() {
             binding.imagenSneaker.setImageBitmap(mapaBits)
 
         }
+
         return binding.root
     }
 
@@ -65,6 +75,32 @@ class InformacionSneaker : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+
+        //Codigo para recupear el valor esAdmin para luego gestionar las vistas
+        val email = FirebaseAuth.getInstance().currentUser!!.email
+        lifecycleScope.launch {
+            try {
+                val snapshot = withContext(Dispatchers.IO) {
+                    bd.collection("Usuarios").document(email.toString()).get().await()
+                }
+                val data = snapshot.data
+                if (data != null) {
+
+                    val esAdmin = data["esAdmin"] as? Boolean ?: false
+
+                    //gestionamos la vista, solo el admin podra acceder a Gestion de Senakers
+                    if (esAdmin == true) {
+                        // Si esAdmin es verdadero, mostrar el ImageView
+                        binding.cardViewInfromacion3.visibility = View.VISIBLE
+                    } else {
+                        // Si esAdmin es falso, ocultar el ImageView
+                        binding.cardViewInfromacion3.visibility = View.GONE
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+            }
+        }
 
         meGustaDocument = bd.collection("Sneakers")
             .document(args.sneaker.CodigoReferencia)
@@ -119,7 +155,7 @@ class InformacionSneaker : Fragment() {
             }
             .addOnFailureListener { exception ->
                 // Manejar el error de consulta apropiadamente
-                Toast.makeText(requireContext(), "Error al obtener el número de Me gusta", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Error al obtener el número de Me gusta", Toast.LENGTH_SHORT).show()
             }
     }
 

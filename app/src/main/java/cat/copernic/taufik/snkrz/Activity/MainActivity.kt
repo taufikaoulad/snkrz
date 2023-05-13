@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,21 +19,52 @@ import cat.copernic.taufik.snkrz.R.id
 import cat.copernic.taufik.snkrz.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity(){
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    private var bd = FirebaseFirestore.getInstance()
+    private lateinit var auth: FirebaseAuth
+
+    var tipoUsuario = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        auth = FirebaseAuth.getInstance()
         // Inflar el layout de la actividad y asignarlo a la variable binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         // Establecer el layout como contenido de la actividad
         setContentView(binding.root)
 
-        //Ocultar la app bar
-        //supportActionBar?.hide()
+        //Codigo para recupear el valor esAdmin para luego gestionar las vistas
+        val email = FirebaseAuth.getInstance().currentUser!!.email
+        lifecycleScope.launch {
+            try {
+                val snapshot = withContext(Dispatchers.IO) {
+                    bd.collection("Usuarios").document(email.toString()).get().await()
+                }
+                val data = snapshot.data
+                if (data != null) {
+
+                    val esAdmin = data["esAdmin"] as? Boolean ?: false
+                    tipoUsuario = esAdmin
+
+                    if (!tipoUsuario) {
+                        binding.navView.menu.findItem(id.crearSneaker)?.isVisible = false
+                    }
+                }
+            } catch (e: Exception) {
+                //Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+            }
+        }
 
         // Establecer la barra de herramientas
         setSupportActionBar(binding.appBarMain.toolbar)

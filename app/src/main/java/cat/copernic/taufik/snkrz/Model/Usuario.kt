@@ -6,4 +6,5 @@ data class Usuario (
     val Nombre : String?,
     val Apellido : String?,
     val DNI : String? ,
-    val Telefono : Int? )
+    val Telefono : Int?,
+    val esAdmin: Boolean = false)

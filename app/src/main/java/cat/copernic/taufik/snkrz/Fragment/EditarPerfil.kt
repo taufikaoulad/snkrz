@@ -40,9 +40,7 @@ class EditarPerfil : Fragment() {
     private var db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
     val user = Firebase.auth.currentUser
-
-
-
+    var tipoUsuario = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -58,16 +56,6 @@ class EditarPerfil : Fragment() {
 
         carregarImatge()
 
-        binding.GuardarDatosPerfil.setOnClickListener {
-
-            if (user != null) {
-                //Modifiquem el usuari mitjançant la funció modificarUsuario creada per nosaltres
-                modificarUsuario(llegirDades())
-
-            } else {
-                mostrarMensaje("No se ha podido modificar el perfil")
-            }
-        }
 
         binding.CancelarDatosPerfil.setOnClickListener {
             findNavController().navigate(R.id.action_editarPerfil_to_perfil)
@@ -92,13 +80,29 @@ class EditarPerfil : Fragment() {
                     val dni = data["dni"]?.toString()
                     val telefono = data["telefono"]?.toString()
 
+                    val esAdmin = data["esAdmin"] as? Boolean ?: false
+                    tipoUsuario = esAdmin
+                    llegirDades(esAdmin)
+
                     binding.NombreEditarPerfil.text = Editable.Factory.getInstance().newEditable(nombre)
                     binding.ApellidoEditarPerfil.text = Editable.Factory.getInstance().newEditable(apellido)
                     binding.DNIEditarPerfil.text = Editable.Factory.getInstance().newEditable(dni)
                     binding.TelefonoEditarPerfil.text = Editable.Factory.getInstance().newEditable(telefono)
+
                 }
             } catch (e: Exception) {
                 Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        binding.GuardarDatosPerfil.setOnClickListener {
+
+            if (user != null) {
+                //Modifiquem el usuari mitjançant la funció modificarUsuario creada per nosaltres
+                modificarUsuario(llegirDades(tipoUsuario))
+
+            } else {
+                mostrarMensaje("No se ha podido modificar el perfil")
             }
         }
     }
@@ -108,7 +112,7 @@ class EditarPerfil : Fragment() {
         _binding = null
     }
 
-    fun llegirDades(): Usuario {
+    fun llegirDades(esAdmin: Boolean): Usuario {
         var Email = user?.email.toString()
         var nombre = binding.NombreEditarPerfil.text.toString()
         var apellido = binding.ApellidoEditarPerfil.text.toString()
@@ -116,7 +120,7 @@ class EditarPerfil : Fragment() {
         val telefonoText = binding.TelefonoEditarPerfil.text.toString()
         val telefono = if (telefonoText.isNotEmpty()) telefonoText.toInt() else 0
 
-        return Usuario(email.toString(), Email, nombre, apellido, dni, telefono)
+        return Usuario(email.toString(), Email, nombre, apellido, dni, telefono, esAdmin)
     }
 
     fun modificarUsuario(user: Usuario) {
@@ -182,7 +186,7 @@ class EditarPerfil : Fragment() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "La carrega de la imatge ha fallat", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "La carrega de la imatge ha fallado o no existe imagen.", Toast.LENGTH_LONG).show()
                 }
             }
         }

@@ -92,7 +92,8 @@ class Registro : AppCompatActivity() {
             nombre,
             null,
             null,
-            null
+            null,
+            false
         )
     }
 
