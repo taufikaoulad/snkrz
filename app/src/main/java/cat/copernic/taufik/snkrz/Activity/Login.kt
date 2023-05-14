@@ -10,10 +10,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Clase Login que extiende AppCompatActivity.
+ */
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
+    /**
+     * Método onCreate que se llama cuando se crea la actividad.
+     * @param savedInstanceState Objeto Bundle que contiene el estado previamente guardado de la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -44,6 +51,11 @@ class Login : AppCompatActivity() {
 
     }
 
+    /**
+     * Método para realizar el inicio de sesión.
+     * @param email Dirección de correo electrónico.
+     * @param password Contraseña.
+     */
     private fun login(email: String, password: String){
 
             auth.signInWithEmailAndPassword(email, password)
@@ -57,10 +69,20 @@ class Login : AppCompatActivity() {
                 }
     }
 
+    /**
+     * Método para verificar si el email y la contraseña no están vacíos.
+     * @param email Dirección de correo electrónico.
+     * @param password Contraseña.
+     * @return Devuelve true si tanto el email como la contraseña no están vacíos, de lo contrario, devuelve false.
+     */
     private fun checkEmpty(email: String, password: String): Boolean {
         return email.isNotEmpty() && password.isNotEmpty()
     }
 
+    /**
+     * Método para mostrar una alerta con el mensaje especificado.
+     * @param mensaje Mensaje de la alerta.
+     */
     private fun showAlert(mensaje: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("ERROR") //siempre sale error tener en cuenta
@@ -69,6 +91,9 @@ class Login : AppCompatActivity() {
         dialog.show()
     }
 
+    /**
+     * Método onStart que se llama cuando la actividad se vuelve visible para el usuario.
+     */
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {

@@ -2,11 +2,15 @@ package cat.copernic.taufik.snkrz.Provider
 
 import cat.copernic.taufik.snkrz.Model.sneaker
 
+/**
+ * Clase que representa una lista de sneakers.
+ */
 class list_sneakers {
     companion object {
-        val list_sneaker = ArrayList<sneaker>(
-
-        )
+        /**
+         * Lista mutable de sneakers.
+         */
+        val list_sneaker = ArrayList<sneaker>()
     }
 }
 

@@ -13,6 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
+/**
+ * Clase Registro que extiende AppCompatActivity.
+ */
 class Registro : AppCompatActivity() {
     private lateinit var binding: ActivityRegistroBinding
 
@@ -23,6 +26,10 @@ class Registro : AppCompatActivity() {
     private lateinit var User: Usuario
 
     @SuppressLint("MissingInflatedId")
+    /**
+     * Método onCreate que se llama cuando se crea la actividad.
+     * @param savedInstanceState Objeto Bundle que contiene el estado previamente guardado de la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
@@ -57,6 +64,11 @@ class Registro : AppCompatActivity() {
 
     }
 
+    /**
+     * Método para registrar un nuevo usuario.
+     * @param email Dirección de correo electrónico del usuario.
+     * @param password Contraseña del usuario.
+     */
     private fun register(email: String, password: String) {
         if (isValidEmail(email)) {
             if (isValidPassword(password)) {
@@ -80,7 +92,11 @@ class Registro : AppCompatActivity() {
 
     }
 
-    //metodo que devuelve un objeto de tipo Usuario, dentro de este se leen de los editText
+    /**
+     * Método para leer los datos del usuario.
+     * @param Uid Identificador único del usuario.
+     * @return Objeto de tipo Usuario con los datos leídos.
+     */
     private fun llegirDades(Uid: String): Usuario {
 
         val email = binding.EditTextRegMail.text.toString()
@@ -97,6 +113,11 @@ class Registro : AppCompatActivity() {
         )
     }
 
+    /**
+     * Método para añadir un usuario a la base de datos.
+     * @param email Dirección de correo electrónico del usuario.
+     * @param password Contraseña del usuario.
+     */
     private fun anadirUsuario(email: String, password: String) {
 
         auth.signInWithEmailAndPassword(email, password)
@@ -113,10 +134,24 @@ class Registro : AppCompatActivity() {
             }
     }
 
+
+    /**
+     * Método para verificar si los campos de email, contraseña y repetir contraseña no están vacíos.
+     * @param email Dirección de correo electrónico.
+     * @param password Contraseña.
+     * @param repetirContrasenya Confirmación de la contraseña.
+     * @return true si los campos no están vacíos, false de lo contrario.
+     */
     private fun checkEmpty(email: String, password: String, repetirContrasenya: String): Boolean {
         return email.isNotEmpty() && password.isNotEmpty() && repetirContrasenya.isNotEmpty()
     }
 
+
+    /**
+     * Método para mostrar una alerta con un mensaje.
+     * @param mensaje Mensaje a mostrar en la alerta.
+     * @param mensaje2 Título de la alerta.
+     */
     private fun showAlert(mensaje: String, mensaje2: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(mensaje2) //siempre sale error tener en cuenta
@@ -125,12 +160,24 @@ class Registro : AppCompatActivity() {
         dialog.show()
     }
 
+
+    /**
+     * Método para verificar si una dirección de correo electrónico es válida.
+     * @param email Dirección de correo electrónico a verificar.
+     * @return true si el email es válido, false de lo contrario.
+     */
     var email_Param = Pattern.compile("^[_a-z0-9]+(.[_a-z0-9]+)*@[a-z0-9]+(.[a-z0-9]+)*(.[a-z]{2,4})\$")
     fun isValidEmail(email: CharSequence?): Boolean {
         return if (email == null) false else email_Param.matcher(email).matches()
     }
 
-    //La contraseña entre 6 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+    /**
+     * Método para verificar si una contraseña cumple con los requisitos.
+     * La contraseña debe tener entre 6 y 16 caracteres, al menos un dígito,
+     * al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+     * @param password Contraseña a verificar.
+     * @return true si la contraseña es válida, false de lo contrario.
+     */
     var password_Param =
         Pattern.compile("^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{6,16}\$")
     fun isValidPassword(password: CharSequence?): Boolean {

@@ -18,7 +18,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-
+/**
+ * Fragmento que muestra la información de una sneakers.
+ */
 class PantallaPrincipalSneakerList : Fragment() {
 
     private var _binding: FragmentPantallaPrincipalSneakerListBinding? = null
@@ -28,6 +30,14 @@ class PantallaPrincipalSneakerList : Fragment() {
     private lateinit var adapter: CustomAdapter
     private var isRecyclerViewInitialized = false
 
+    /**
+     * Método que se llama al crear la vista del fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar la vista.
+     * @param container El contenedor padre en el que se infla la vista.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     * @return La vista inflada del fragmento.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +47,12 @@ class PantallaPrincipalSneakerList : Fragment() {
         return binding.root
     }
 
+    /**
+     * Método que se llama una vez que la vista del fragmento ha sido creada.
+     *
+     * @param view La vista del fragmento.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = CustomAdapter(listMutable)
@@ -44,12 +60,18 @@ class PantallaPrincipalSneakerList : Fragment() {
         listenForDataChanges()
     }
 
+    /**
+     * Inicializa el RecyclerView con su respectivo LayoutManager y Adapter.
+     */
     private fun initRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
         isRecyclerViewInitialized = true
     }
 
+    /**
+     * Escucha los cambios en los datos de la colección "Sneakers" y actualiza la lista de elementos en el RecyclerView.
+     */
     private fun listenForDataChanges() {
         val dataChangeU = bd.collection("Sneakers")
         dataChangeU.addSnapshotListener { snapshot, e ->
@@ -65,6 +87,9 @@ class PantallaPrincipalSneakerList : Fragment() {
         }
     }
 
+    /**
+     * Obtiene los documentos de la colección "Sneakers" y actualiza la lista de elementos en el RecyclerView.
+     */
     private fun recycleServicios() {
         lifecycleScope.launch(Dispatchers.IO) {
             val documents = withContext(Dispatchers.IO) {
@@ -92,6 +117,9 @@ class PantallaPrincipalSneakerList : Fragment() {
         }
     }
 
+    /**
+     * Limpia la vista y libera los recursos cuando se destruye el fragmento.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

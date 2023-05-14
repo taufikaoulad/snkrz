@@ -9,7 +9,13 @@ import android.view.animation.AnimationUtils
 import cat.copernic.taufik.snkrz.R
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
+/**
+ * Clase SplashScreen que muestra una pantalla de presentación al iniciar la aplicación.
+ */
 class SplashScreen : AppCompatActivity() {
+    /**
+     * Método onCreate que se ejecuta al crear la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)

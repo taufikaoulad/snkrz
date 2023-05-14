@@ -26,7 +26,9 @@ import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
-
+/**
+ * Clase CrearSneaker que representa un Fragmento para crear una nueva sneaker.
+ */
 class CrearSneaker : Fragment() {
 
     private var _binding: FragmentCrearSneakerBinding? = null
@@ -38,6 +40,14 @@ class CrearSneaker : Fragment() {
 
     private val storageRef = FirebaseStorage.getInstance().reference
 
+    /**
+     * Método que se llama al crear la vista del fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar la vista.
+     * @param container El contenedor padre en el que se infla la vista.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     * @return La vista inflada del fragmento.
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
@@ -45,6 +55,12 @@ class CrearSneaker : Fragment() {
         return binding.root
     }
 
+    /**
+     * Método que se llama una vez que la vista del fragmento ha sido creada.
+     *
+     * @param view La vista del fragmento.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.btnAddImage.setOnClickListener {
@@ -68,6 +84,11 @@ class CrearSneaker : Fragment() {
 
     }
 
+    /**
+     * Método que lee los datos ingresados en los campos de texto y retorna una instancia de sneaker.
+     *
+     * @return Una instancia de sneaker con los datos ingresados.
+     */
     fun llegirDades(): sneaker{
         val codigoRef = binding.editTextCodRefSnkr.text.toString()
         val modeloSneaker = binding.editTextModeloSneaker.text.toString()
@@ -87,6 +108,11 @@ class CrearSneaker : Fragment() {
         return sneaker(codigoRef, modeloSneaker, nombreSneaker, precio, fechaLanz, descripcion, null)
     }
 
+    /**
+     * Método que añade una sneaker a la base de datos.
+     *
+     * @param snkr La sneaker a añadir.
+     */
     fun anadirSneaker(snkr: sneaker){
         bd.collection("Sneakers").document(editTextCodRefSnkr.text.toString()).set(snkr)
             .addOnSuccessListener { //S'ha modificat la sneaker...
@@ -98,6 +124,12 @@ class CrearSneaker : Fragment() {
             }
     }
 
+    /**
+     * Método que verifica si los campos de la sneaker están vacíos.
+     *
+     * @param Sneaker La sneaker a verificar.
+     * @return true si los campos no están vacíos, false de lo contrario.
+     */
     fun checkEmpty(Sneaker:sneaker): Boolean{
         return Sneaker.NombreSneaker.isNotEmpty() && Sneaker.ModelSneaker.isNotEmpty() &&
                 Sneaker.Precio.isNotEmpty() && Sneaker.CodigoReferencia.isNotEmpty() &&
@@ -134,6 +166,12 @@ class CrearSneaker : Fragment() {
         }
     }
 
+
+    /**
+     * Método que muestra un mensaje en un Snackbar.
+     *
+     * @param mensaje El mensaje a mostrar.
+     */
     fun mostrarMensaje(mensaje: String) {
         val snackbar = Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT)
         snackbar.show()

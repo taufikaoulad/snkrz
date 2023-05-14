@@ -14,11 +14,18 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Clase RecuperarContrasena que extiende AppCompatActivity.
+ */
 class RecuperarContrasena : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecuperarContrasenaBinding
     private lateinit var auth: FirebaseAuth
 
+    /**
+     * Método onCreate que se llama cuando se crea la actividad.
+     * @param savedInstanceState Objeto Bundle que contiene el estado previamente guardado de la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecuperarContrasenaBinding.inflate(layoutInflater)
@@ -45,6 +52,10 @@ class RecuperarContrasena : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método para restaurar la contraseña del usuario.
+     * @param correu Dirección de correo electrónico del usuario.
+     */
     private fun restaurarContrasenya(correu: String) {
         auth.setLanguageCode("es")
 
@@ -62,6 +73,11 @@ class RecuperarContrasena : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método para mostrar una alerta con el mensaje especificado.
+     * @param mensaje Mensaje de la alerta.
+     * @param mensaje2 Título de la alerta.
+     */
     private fun showAlert(mensaje: String, mensaje2: String) {
         if (!isFinishing()) {
             val toast = Toast.makeText(this, mensaje, Toast.LENGTH_SHORT)

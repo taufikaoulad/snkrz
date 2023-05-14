@@ -25,6 +25,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
+/**
+ * Clase MainActivity que extiende AppCompatActivity.
+ */
 class MainActivity : AppCompatActivity(){
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -35,6 +38,10 @@ class MainActivity : AppCompatActivity(){
 
     var tipoUsuario = false
 
+    /**
+     * Método onCreate que se llama cuando se crea la actividad.
+     * @param savedInstanceState Objeto Bundle que contiene el estado previamente guardado de la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -114,7 +121,10 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    // Anular el método onSupportNavigateUp para permitir la navegación hacia atrás en la aplicación
+    /**
+     * Método onSupportNavigateUp que se llama cuando se presiona el botón de navegación hacia arriba en la barra de aplicaciones.
+     * @return Devuelve true si la navegación hacia arriba se ha realizado correctamente, de lo contrario, devuelve el valor devuelto por la superclase.
+     */
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

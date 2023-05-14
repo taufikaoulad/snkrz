@@ -28,6 +28,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
+/**
+ * Fragmento que muestra la información de una sneaker específica.
+ */
 class InformacionSneaker : Fragment() {
 
     private var _binding: FragmentInformacionSneakerBinding? = null
@@ -44,6 +47,14 @@ class InformacionSneaker : Fragment() {
     private lateinit var meGustaDocument: DocumentReference
 
 
+    /**
+     * Método que se llama al crear la vista del fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar la vista.
+     * @param container El contenedor padre en el que se infla la vista.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     * @return La vista inflada del fragmento.
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         _binding = FragmentInformacionSneakerBinding.inflate(inflater, container, false)
@@ -71,7 +82,12 @@ class InformacionSneaker : Fragment() {
         return binding.root
     }
 
-
+    /**
+     * Método que se llama una vez que la vista del fragmento ha sido creada.
+     *
+     * @param view La vista del fragmento.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
@@ -152,6 +168,9 @@ class InformacionSneaker : Fragment() {
         }
     }
 
+    /**
+     * Método para obtener el número total de "me gusta" de la sneaker actual.
+     */
     private fun obtenerNumeroMeGustas() {
         bd.collection("Sneakers")
             .document(args.sneaker.CodigoReferencia)

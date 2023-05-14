@@ -33,6 +33,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+/**
+ * Clase para gestionar sneakers.
+ * Extiende de Fragment.
+ */
 class GestionSneakers : Fragment() {
 
     private var _binding: FragmentGestionSneakersBinding? = null
@@ -44,6 +48,14 @@ class GestionSneakers : Fragment() {
     private var storage = FirebaseStorage.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
 
+    /**
+     * Crea y devuelve la vista asociada al fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar la vista.
+     * @param container El contenedor padre en el cual se debe insertar la vista.
+     * @param savedInstanceState Los datos de estado previamente guardados del fragmento (si los hay).
+     * @return La vista creada o null si ocurre un error.
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentGestionSneakersBinding.inflate(inflater, container, false)
@@ -52,6 +64,12 @@ class GestionSneakers : Fragment() {
         return binding.root
     }
 
+    /**
+     * Método que se llama una vez que la vista del fragmento ha sido creada.
+     *
+     * @param view La vista del fragmento.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -102,6 +120,11 @@ class GestionSneakers : Fragment() {
 
     }
 
+    /**
+     * Lee los datos de la vista y crea un objeto de tipo sneaker con los valores obtenidos.
+     *
+     * @return Un objeto sneaker con los datos leídos de la vista.
+     */
     fun llegirDades(): sneaker{
         val codigoRef = binding.editTextCodRefGestio.text.toString()
         val modeloSneaker = binding.editTextModeloGestio.text.toString()
@@ -121,6 +144,11 @@ class GestionSneakers : Fragment() {
         return sneaker(codigoRef, modeloSneaker, nombreSneaker, precio, fechaLanz, descripcion, null)
     }
 
+    /**
+     * Añade una sneaker a la base de datos.
+     *
+     * @param snkr El objeto sneaker a añadir.
+     */
     fun anadirSneaker(snkr: sneaker){
         bd.collection("Sneakers").document(editTextCodRefGestio.text.toString()).set(snkr)
             .addOnSuccessListener { //S'ha modificat la sneaker...
@@ -132,12 +160,23 @@ class GestionSneakers : Fragment() {
             }
     }
 
+    /**
+     * Verifica si los campos del objeto sneaker no están vacíos.
+     *
+     * @param Sneaker El objeto sneaker a verificar.
+     * @return true si todos los campos están llenos, false de lo contrario.
+     */
     fun checkEmpty(Sneaker:sneaker): Boolean{
         return Sneaker.NombreSneaker.isNotEmpty() && Sneaker.ModelSneaker.isNotEmpty() &&
                 Sneaker.Precio.isNotEmpty() && Sneaker.CodigoReferencia.isNotEmpty() &&
                 Sneaker.Descripcion.isNotEmpty() && Sneaker.FechaLanzamiento.isNotEmpty()
     }
 
+    /**
+     * Callback para obtener la imagen seleccionada por el usuario y subirla al almacenamiento.
+     *
+     * @param uri La URI de la imagen seleccionada.
+     */
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -168,11 +207,19 @@ class GestionSneakers : Fragment() {
         }
     }
 
+    /**
+     * Método que se ejecuta al destruir la vista del fragmento.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    /**
+     * Elimina una sneaker de la base de datos.
+     *
+     * @param codigoRef El código de referencia de la sneaker a eliminar.
+     */
     fun eliminarSneaker(codigoRef: String) {
         bd.collection("Sneakers").document(codigoRef).delete()
             .addOnSuccessListener {
@@ -184,6 +231,12 @@ class GestionSneakers : Fragment() {
             }
     }
 
+
+    /**
+     * Muestra un mensaje en forma de Snackbar.
+     *
+     * @param mensaje El mensaje a mostrar.
+     */
     fun mostrarMensaje(mensaje: String) {
         val snackbar = Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT)
         snackbar.show()

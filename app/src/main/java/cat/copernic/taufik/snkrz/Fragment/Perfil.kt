@@ -23,6 +23,9 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.io.File
 
+/**
+ * Fragmento utilizado para mostrar el perfil de un usuario.
+ */
 class Perfil : Fragment() {
 
     private var _binding: FragmentPerfilBinding? = null
@@ -32,12 +35,26 @@ class Perfil : Fragment() {
     private lateinit var auth: FirebaseAuth
     private val storageRef = FirebaseStorage.getInstance().reference
 
+    /**
+     * Método que se llama al crear la vista del fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar la vista.
+     * @param container El contenedor padre en el que se infla la vista.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     * @return La vista inflada del fragmento.
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    /**
+     * Método que se llama una vez que la vista del fragmento ha sido creada.
+     *
+     * @param view La vista del fragmento.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.btnEditarPerfil.setOnClickListener {
@@ -73,6 +90,9 @@ class Perfil : Fragment() {
         }
     }
 
+    /**
+     * Carga la imagen de perfil del usuario desde Firebase Storage.
+     */
     private fun carregarImatge(){
         auth = Firebase.auth
         val user = auth.currentUser
@@ -96,6 +116,9 @@ class Perfil : Fragment() {
         }
     }
 
+    /**
+     * Limpia la vista y libera los recursos cuando se destruye el fragmento.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

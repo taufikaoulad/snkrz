@@ -16,6 +16,11 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
+/**
+ * Clase CustomAdapter que actúa como adaptador para un RecyclerView y muestra una lista de sneakers.
+ *
+ * @param sneakerList La lista de sneakers a mostrar.
+ */
 class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     // Clase ViewHolder que contiene los elementos de la vista del elemento de lista
     inner class ViewHolder(val binding: CardLayoutSneakersBinding): RecyclerView.ViewHolder(binding.root)
@@ -25,14 +30,25 @@ class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter
     private val storageRef = FirebaseStorage.getInstance().reference
     private lateinit var auth: FirebaseAuth
 
-    // Método que se llama cuando se necesita crear una nueva vista para un elemento de lista
+    /**
+     * Método que se llama cuando se necesita crear una nueva vista para un elemento de lista.
+     *
+     * @param viewGroup El ViewGroup en el que se infla la vista.
+     * @param i La posición del elemento en la lista de datos.
+     * @return El ViewHolder que contiene la vista del elemento de lista.
+     */
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         // Inflar el diseño del elemento de lista
         val binding = CardLayoutSneakersBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
-    // Método que se llama para vincular los datos a la vista del elemento de lista
+    /**
+    * Método que se llama para vincular los datos a la vista del elemento de lista.
+    *
+    * @param holder El ViewHolder que contiene la vista del elemento de lista.
+    * @param position La posición del elemento en la lista de datos.
+    */
     override fun onBindViewHolder(holder: ViewHolder, position: Int){
         with(holder){
             with(sneakerList[position]){
@@ -70,12 +86,21 @@ class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter
         }
     }
 
-    // Método que devuelve la cantidad de elementos en la lista
+    /**
+     * Método que devuelve la cantidad de elementos en la lista.
+     *
+     * @return El número de elementos en la lista.
+     */
     override fun getItemCount(): Int {
         return sneakerList.size
     }
 
-    // Método que se llama cuando se hace clic en el elemento del RecyclerView
+    /**
+     * Método que se llama cuando se hace clic en el elemento del RecyclerView.
+     *
+     * @param args Los datos de la sneaker seleccionada.
+     * @param view La vista del elemento en la que se hizo clic
+    */
     fun safeargs(args: sneaker, view : View){
         // Crear la acción de navegación con los datos de la sneaker
         var action = PantallaPrincipalSneakerListDirections.actionPantallaPrincipalSneakerListToInformacionSneaker(args)

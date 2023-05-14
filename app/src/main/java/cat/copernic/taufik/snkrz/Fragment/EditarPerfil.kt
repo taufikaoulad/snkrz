@@ -29,6 +29,9 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 
+/**
+ * Fragmento para editar el perfil de usuario.
+ */
 class EditarPerfil : Fragment() {
 
     private var _binding: FragmentEditarPerfilBinding? = null
@@ -42,6 +45,14 @@ class EditarPerfil : Fragment() {
     val user = Firebase.auth.currentUser
     var tipoUsuario = false
 
+    /**
+     * Método que se llama al crear la vista del fragmento.
+     *
+     * @param inflater El LayoutInflater utilizado para inflar la vista.
+     * @param container El contenedor padre en el que se infla la vista.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     * @return La vista inflada del fragmento.
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentEditarPerfilBinding.inflate(inflater, container, false)
@@ -49,6 +60,12 @@ class EditarPerfil : Fragment() {
         return binding.root
     }
 
+    /**
+     * Método que se llama una vez que la vista del fragmento ha sido creada.
+     *
+     * @param view La vista del fragmento.
+     * @param savedInstanceState El estado previamente guardado del fragmento.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -112,6 +129,13 @@ class EditarPerfil : Fragment() {
         _binding = null
     }
 
+
+    /**
+     * Lee los datos del formulario y crea un objeto Usuario.
+     *
+     * @param esAdmin indica si el usuario es un administrador
+     * @return objeto Usuario con los datos del formulario
+     */
     fun llegirDades(esAdmin: Boolean): Usuario {
         var Email = user?.email.toString()
         var nombre = binding.NombreEditarPerfil.text.toString()
@@ -123,6 +147,11 @@ class EditarPerfil : Fragment() {
         return Usuario(email.toString(), Email, nombre, apellido, dni, telefono, esAdmin)
     }
 
+    /**
+     * Modifica el usuario en la base de datos.
+     *
+     * @param user objeto Usuario con los datos a modificar
+     */
     fun modificarUsuario(user: Usuario) {
         if (email != null) {
             db.collection("Usuarios").document(email).set(user)
@@ -136,6 +165,11 @@ class EditarPerfil : Fragment() {
         }
     }
 
+    /**
+     * Función de callback para obtener la imagen seleccionada.
+     *
+     * @param uri URI de la imagen seleccionada
+     */
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -168,6 +202,9 @@ class EditarPerfil : Fragment() {
         }
     }
 
+    /**
+     * Carga la imagen de perfil del usuario desde Firebase Storage.
+     */
     private fun carregarImatge(){
         auth = Firebase.auth
         val user = auth.currentUser
@@ -192,7 +229,11 @@ class EditarPerfil : Fragment() {
         }
     }
 
-
+    /**
+     * Muestra un mensaje en forma de Snackbar.
+     *
+     * @param mensaje mensaje a mostrar
+     */
     fun mostrarMensaje(mensaje: String) {
         val snackbar = Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT)
         snackbar.show()
