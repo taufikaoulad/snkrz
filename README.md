@@ -14,6 +14,7 @@ https://docs.google.com/document/d/1p8up5W-enFxKP41iaiupS8-GkX5WdnZQmVymmr18QkY/
 
 ## Link Video Snkrz
 
-![Uploading Screenshot_20230511_222907.png…]()
+## Imagenes SNKRZ APP
+
 
 
