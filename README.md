@@ -12,3 +12,8 @@ https://play.google.com/store/apps/details?id=cat.copernic.taufik.snkrz
 ## Link Memoria
 https://docs.google.com/document/d/1p8up5W-enFxKP41iaiupS8-GkX5WdnZQmVymmr18QkY/edit#heading=h.z3g0ja82qn1e
 
+## Link Video Snkrz
+
+![Uploading Screenshot_20230511_222907.png…]()
+
+
