@@ -3,6 +3,10 @@
 Proyecto Android -  Kotlin - Dam2 - SNKRZ
 
 
+## Description
+Proyecto de android, que trata sobre los lanzamientos de sneakers con hype, es decir, sneakers que son muy pedidas y que la gente le cuesta obtener ya sea por la poca cantidad, exlusividad, etc. Gracias a esta app, miles de personas sabran cuando se produce los lanzamientos de sus pares favoritos. Resolviedo el problema de no perderse ese release. 
+
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
@@ -55,8 +59,7 @@ Every project is different, so consider which of these sections apply to yours. 
 ## Name
 SNKRZ APP - DAM2 - ANDORID STUDIO(KOTLIN)
 
-## Description
-Proyecto de android, que trata sobre los lanzamientos de sneakers con hype, es decir, sneakers que son muy pedidas y que la gente le cuesta obtener ya sea por la poca cantidad, exlusividad, etc. Gracias a esta app, miles de personas sabran cuando se produce los lanzamientos de sus pares favoritos. Resolviedo el problema de no perderse ese release. 
+
 
 ## Badges
 On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
