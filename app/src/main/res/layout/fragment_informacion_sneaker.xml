@@ -42,9 +42,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="106dp"
                     android:layout_marginTop="40dp"
+                    android:layout_marginBottom="4dp"
                     android:fontFamily="sans-serif-black"
+                    android:gravity="center"
                     android:text="@string/nike_dunk_lows"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtSneaker"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
@@ -56,13 +59,16 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="40dp"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="sans-serif-black"
+                    android:gravity="center"
                     android:text="@string/grey_fog"
                     android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/edittextNombreSneaker"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck"
-                    android:focusable="true" />
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:id="@+id/txtSneaker"

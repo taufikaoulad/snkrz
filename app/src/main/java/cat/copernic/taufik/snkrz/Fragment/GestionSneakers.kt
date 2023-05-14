@@ -118,6 +118,10 @@ class GestionSneakers : Fragment() {
             }
         }
 
+        binding.btnAddImageGestio.setOnClickListener {
+            getContent.launch("image/*")
+        }
+
     }
 
     /**
