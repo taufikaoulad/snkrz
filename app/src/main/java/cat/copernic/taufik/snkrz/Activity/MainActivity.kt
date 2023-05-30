@@ -1,6 +1,7 @@
 package cat.copernic.taufik.snkrz.Activity
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -16,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import cat.copernic.taufik.snkrz.R
 import cat.copernic.taufik.snkrz.R.id
+import cat.copernic.taufik.snkrz.Utils.Utils
 import cat.copernic.taufik.snkrz.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -44,12 +46,13 @@ class MainActivity : AppCompatActivity(){
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         auth = FirebaseAuth.getInstance()
         // Inflar el layout de la actividad y asignarlo a la variable binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         // Establecer el layout como contenido de la actividad
         setContentView(binding.root)
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //Codigo para recupear el valor esAdmin para luego gestionar las vistas
         val email = FirebaseAuth.getInstance().currentUser!!.email
@@ -70,6 +73,7 @@ class MainActivity : AppCompatActivity(){
                 }
             } catch (e: Exception) {
                 //Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+                Utils.mostrarMensaje(getString(R.string.fail), binding.root)
             }
         }
 

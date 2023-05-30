@@ -1,36 +1,31 @@
 package cat.copernic.taufik.snkrz.Fragment
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import cat.copernic.taufik.snkrz.Model.sneaker
 import cat.copernic.taufik.snkrz.R
+import cat.copernic.taufik.snkrz.Utils.Utils
 import cat.copernic.taufik.snkrz.databinding.FragmentGestionSneakersBinding
-import cat.copernic.taufik.snkrz.databinding.FragmentInformacionSneakerBinding
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.fragment_crear_sneaker.*
 import kotlinx.android.synthetic.main.fragment_gestion_sneakers.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -43,10 +38,9 @@ class GestionSneakers : Fragment() {
     private val binding get() = _binding!!
 
     private var bd = FirebaseFirestore.getInstance()
-    private lateinit var auth: FirebaseAuth
 
-    private var storage = FirebaseStorage.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
+    private var selectedImageUri: Uri? = null
 
     /**
      * Crea y devuelve la vista asociada al fragmento.
@@ -59,8 +53,9 @@ class GestionSneakers : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding = FragmentGestionSneakersBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
 
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -109,12 +104,12 @@ class GestionSneakers : Fragment() {
         }
 
         binding.GuardarDatosGestionaSneaker.setOnClickListener {
-
             val Sneaker : sneaker = llegirDades()
+
             if (checkEmpty(Sneaker)){
                 anadirSneaker(Sneaker)
             }else{
-                mostrarMensaje("La sneaker no se ha guardado, contiene campos vacios!!!")
+                Utils.mostrarMensaje(getString(R.string.GestionarSneaker), binding.root)
             }
         }
 
@@ -154,14 +149,29 @@ class GestionSneakers : Fragment() {
      * @param snkr El objeto sneaker a añadir.
      */
     fun anadirSneaker(snkr: sneaker){
-        bd.collection("Sneakers").document(editTextCodRefGestio.text.toString()).set(snkr)
-            .addOnSuccessListener { //S'ha modificat la sneaker...
-                mostrarMensaje("La sneaker s'ha añadido correctamente")
-                findNavController().navigate(R.id.action_gestionSneakers_to_pantallaPrincipalSneakerList)
-            }
-            .addOnFailureListener { //No s'ha afegit el departament...
-                mostrarMensaje("La sneaker no s'ha añadido")
-            }
+        val codigoRef = snkr.CodigoReferencia
+        val delayMillis = 2100L
+        if (codigoRef != null) {
+                bd.collection("Sneakers").document(editTextCodRefGestio.text.toString()).set(snkr)
+                    .addOnSuccessListener { //S'ha modificat la sneaker...
+                        Utils.mostrarMensaje(getString(R.string.GestionarSneaker2), binding.root)
+
+                        // Guardar la imagen en el almacenamiento usando el código de referencia
+                        if (selectedImageUri != null) {
+                            uploadImage(selectedImageUri!!, codigoRef)
+                        }
+
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            // Código para realizar la navegación aquí
+                            findNavController().navigate(R.id.action_gestionSneakers_to_pantallaPrincipalSneakerList)
+                        }, delayMillis)
+                    }
+                    .addOnFailureListener { //No s'ha afegit el departament...
+                        Utils.mostrarMensaje(getString(R.string.GestionarSneaker3), binding.root)
+                    }
+        } else {
+            Utils.mostrarMensaje(getString(R.string.GestionarSneaker5), binding.root)
+        }
     }
 
     /**
@@ -177,35 +187,40 @@ class GestionSneakers : Fragment() {
     }
 
     /**
-     * Callback para obtener la imagen seleccionada por el usuario y subirla al almacenamiento.
-     *
-     * @param uri La URI de la imagen seleccionada.
+     * Contrato de actividad utilizado para obtener contenido seleccionado por el usuario, en este caso, una imagen.
+     * Si se selecciona una imagen, se asigna a la variable `selectedImageUri`. Si no se selecciona ninguna imagen,
+     * se muestra un mensaje de error.
      */
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        if (uri != null) {
-            lifecycleScope.launch(Dispatchers.IO) {
-                try {
-                    val inputStream = requireActivity().contentResolver.openInputStream(uri)
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            if (uri != null) {
+                selectedImageUri = uri
+            } else {
+                Utils.mostrarMensaje(getString(R.string.GestionarSneaker6), binding.root)
+            }
+        }
 
-                    val fileName = binding.GuardarDatosGestionaSneaker.text.toString() + ".jpg"
-                    val imageRef = storageRef.child("imagen/sneaker/").child(fileName)
-                    val baos = ByteArrayOutputStream()
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-                    val data = baos.toByteArray()
-                    val uploadTask = imageRef.putBytes(data)
-                    uploadTask.await()
+    /**
+     * Sube una imagen a Firebase Storage.
+     *
+     * @param uri La ubicación de la imagen a subir.
+     * @param codigoRef El código de referencia para la imagen.
+     */
+    private fun uploadImage(uri: Uri, codigoRef: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val imageRef =
+                    storageRef.child("imagen/sneaker/").child(codigoRef)
+                val uploadTask = imageRef.putFile(uri)
+                uploadTask.await()
 
-                    withContext(Dispatchers.Main) {
-                        // Actualizar la imagen de la sneaker en la interfaz de usuario si es necesario
-                        mostrarMensaje("Imagen subida correctamente")
-                    }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    withContext(Dispatchers.Main) {
-                        mostrarMensaje("Error al subir la imagen")
-                        //Toast.makeText(requireContext(), "Error al subir la imagen", Toast.LENGTH_SHORT).show()
-                    }
+                withContext(Dispatchers.Main) {
+                    Utils.mostrarMensaje(getString(R.string.GestionarSneaker7), binding.root)
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    Utils.mostrarMensaje(getString(R.string.GestionarSneaker8), binding.root)
                 }
             }
         }
@@ -225,25 +240,18 @@ class GestionSneakers : Fragment() {
      * @param codigoRef El código de referencia de la sneaker a eliminar.
      */
     fun eliminarSneaker(codigoRef: String) {
+        val delayMillis = 1500L
+
         bd.collection("Sneakers").document(codigoRef).delete()
             .addOnSuccessListener {
-                mostrarMensaje("La sneaker se ha eliminado correctamente")
-                findNavController().navigate(R.id.action_gestionSneakers_to_pantallaPrincipalSneakerList)
+                Utils.mostrarMensaje(getString(R.string.GestionarSneaker9), binding.root)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    findNavController().navigate(R.id.action_gestionSneakers_to_pantallaPrincipalSneakerList)
+                }, delayMillis)
             }
             .addOnFailureListener {
-                mostrarMensaje("No se ha podido eliminar la sneaker")
+                Utils.mostrarMensaje(getString(R.string.GestionarSneaker10), binding.root)
             }
-    }
-
-
-    /**
-     * Muestra un mensaje en forma de Snackbar.
-     *
-     * @param mensaje El mensaje a mostrar.
-     */
-    fun mostrarMensaje(mensaje: String) {
-        val snackbar = Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT)
-        snackbar.show()
     }
 
 }

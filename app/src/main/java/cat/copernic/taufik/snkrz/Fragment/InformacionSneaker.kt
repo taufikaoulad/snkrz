@@ -1,5 +1,6 @@
 package cat.copernic.taufik.snkrz.Fragment
 
+import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
@@ -21,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import androidx.navigation.fragment.findNavController
+import cat.copernic.taufik.snkrz.Utils.Utils
 import kotlinx.android.synthetic.main.fragment_informacion_sneaker.*
 import kotlinx.android.synthetic.main.fragment_informacion_sneaker.view.*
 import kotlinx.coroutines.Dispatchers
@@ -59,6 +61,8 @@ class InformacionSneaker : Fragment() {
         savedInstanceState: Bundle?): View? {
         _binding = FragmentInformacionSneakerBinding.inflate(inflater, container, false)
 
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         binding.edittextNombreSneaker.setText(args.sneaker.NombreSneaker)
         binding.sneakerModel.setText(args.sneaker.ModelSneaker)
         binding.fechaLanzamiento.setText(args.sneaker.FechaLanzamiento)
@@ -68,7 +72,7 @@ class InformacionSneaker : Fragment() {
 
         auth = Firebase.auth
 
-        var adrecaImatge = storageRef.child("imagen/sneaker/${args.sneaker.CodigoReferencia}.jpg")
+        var adrecaImatge = storageRef.child("imagen/sneaker/${args.sneaker.CodigoReferencia}")
         var fitxerTemporal = File.createTempFile("temp",null)
 
         adrecaImatge.getFile(fitxerTemporal).addOnSuccessListener { //La carrega a tingut èxit..
@@ -114,7 +118,8 @@ class InformacionSneaker : Fragment() {
                     }
                 }
             } catch (e: Exception) {
-                Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+                //Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+                //Utils.mostrarMensaje(getString(R.string.fail), binding.root)
             }
         }
 
@@ -145,24 +150,28 @@ class InformacionSneaker : Fragment() {
                 // El usuario ya ha dado "Me gusta", así que lo quitamos
                 meGustaDocument.delete().addOnSuccessListener {
                     meGusta = false
-                    Toast.makeText(requireContext(), "Me gusta eliminado", Toast.LENGTH_SHORT).show()
+                    Utils.mostrarMensaje(getString(R.string.InformacionSneaker1), binding.root)
+                    //Toast.makeText(requireContext(), "Me gusta eliminado", Toast.LENGTH_SHORT).show()
                     obtenerNumeroMeGustas()
                     binding.likeBtn.clearColorFilter()
                 }.addOnFailureListener { exception ->
                     // Error al eliminar, maneja el error apropiadamente
-                    Toast.makeText(requireContext(), "Error al eliminar el Me gusta", Toast.LENGTH_SHORT).show()
+                    Utils.mostrarMensaje(getString(R.string.InformacionSneaker2), binding.root)
+                    //Toast.makeText(requireContext(), "Error al eliminar el Me gusta", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 // El usuario no ha dado "Me gusta", así que lo agregamos
                 meGustaDocument.set(hashMapOf("Email" to auth.currentUser?.email.toString()))
                     .addOnSuccessListener {
                         meGusta = true
-                        Toast.makeText(requireContext(), "Me gusta agregado", Toast.LENGTH_SHORT).show()
+                        Utils.mostrarMensaje(getString(R.string.InformacionSneaker3), binding.root)
+                        //Toast.makeText(requireContext(), "Me gusta agregado", Toast.LENGTH_SHORT).show()
                         obtenerNumeroMeGustas()
                         binding.likeBtn.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red)) // Aplicar el filtro de color rojo
                     }.addOnFailureListener { exception ->
                         // Error al agregar, maneja el error apropiadamente
-                        Toast.makeText(requireContext(), "Error al agregar el Me gusta", Toast.LENGTH_SHORT).show()
+                        Utils.mostrarMensaje(getString(R.string.InformacionSneaker4), binding.root)
+                        //Toast.makeText(requireContext(), "Error al agregar el Me gusta", Toast.LENGTH_SHORT).show()
                     }
             }
         }
@@ -182,7 +191,7 @@ class InformacionSneaker : Fragment() {
             }
             .addOnFailureListener { exception ->
                 // Manejar el error de consulta apropiadamente
-                //Toast.makeText(requireContext(), "Error al obtener el número de Me gusta", Toast.LENGTH_SHORT).show()
+                Utils.mostrarMensaje(getString(R.string.InformacionSneaker5), binding.root)
             }
     }
 }

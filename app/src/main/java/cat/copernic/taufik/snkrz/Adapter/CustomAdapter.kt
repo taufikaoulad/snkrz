@@ -25,8 +25,6 @@ class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter
     // Clase ViewHolder que contiene los elementos de la vista del elemento de lista
     inner class ViewHolder(val binding: CardLayoutSneakersBinding): RecyclerView.ViewHolder(binding.root)
 
-    private var db = Firebase.firestore
-    private var storage = FirebaseStorage.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
     private lateinit var auth: FirebaseAuth
 
@@ -68,7 +66,7 @@ class CustomAdapter(val sneakerList: MutableList<sneaker>): RecyclerView.Adapter
 
                 auth = Firebase.auth
 
-                var adrecaImatge = storageRef.child("imagen/sneaker/$CodigoReferencia.jpg")
+                var adrecaImatge = storageRef.child("/imagen/sneaker/$CodigoReferencia")
                 var fitxerTemporal = File.createTempFile("temp", null)
 
                 adrecaImatge.getFile(fitxerTemporal).addOnSuccessListener {

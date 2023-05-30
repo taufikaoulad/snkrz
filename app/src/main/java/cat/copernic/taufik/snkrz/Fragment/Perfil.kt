@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import cat.copernic.taufik.snkrz.R
+import cat.copernic.taufik.snkrz.Utils.Utils
 import cat.copernic.taufik.snkrz.databinding.FragmentPerfilBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -85,7 +87,8 @@ class Perfil : Fragment() {
                     binding.txtMailPerfil.text = email.toString()
                 }
             } catch (e: Exception) {
-                Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+                //Toast.makeText(requireActivity(), "Failed!", Toast.LENGTH_LONG).show()
+                Utils.mostrarMensaje(getString(R.string.Perfil1), binding.root)
             }
         }
     }
@@ -96,8 +99,7 @@ class Perfil : Fragment() {
     private fun carregarImatge(){
         auth = Firebase.auth
         val user = auth.currentUser
-        val fileName = "imagen_perfil.jpg"
-        var adrecaImatge = storageRef.child("imagen/perfil/${user?.uid}/$fileName")
+        var adrecaImatge = storageRef.child("imagen/perfil/${user?.uid}")
         val fitxerTemporal = File.createTempFile("temp", null)
 
         lifecycleScope.launch(Dispatchers.IO) { // Ejecuta las tareas en un hilo de fondo
@@ -111,6 +113,7 @@ class Perfil : Fragment() {
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     //Toast.makeText(context, "La carrega de la imatge ha fallat", Toast.LENGTH_LONG).show()
+                    Utils.mostrarMensaje(getString(R.string.Perfil2), binding.root)
                 }
             }
         }
@@ -123,4 +126,6 @@ class Perfil : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

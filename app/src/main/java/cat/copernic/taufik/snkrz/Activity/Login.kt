@@ -2,9 +2,12 @@ package cat.copernic.taufik.snkrz.Activity
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cat.copernic.taufik.snkrz.R
+import cat.copernic.taufik.snkrz.Utils.Utils
+import cat.copernic.taufik.snkrz.Utils.Utils.Companion.showAlert
 import cat.copernic.taufik.snkrz.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -26,6 +29,9 @@ class Login : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         //Ocultar la app bar
         supportActionBar?.hide()
 
@@ -45,7 +51,7 @@ class Login : AppCompatActivity() {
             if(checkEmpty(email, password)){
                 login(email, password)
             }else{
-                showAlert("El email y contraseña no pueden ser campos vacíos. ")
+                Utils.showAlert2(getString(R.string.LoginTexto1), this)
             }
         }
 
@@ -64,7 +70,7 @@ class Login : AppCompatActivity() {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        showAlert("Se ha producido un error autenticando al usuario. Comprueba que el email o la contraseña sean correctos.")
+                        Utils.showAlert2(getString(R.string.LoginTexto2), this)
                     }
                 }
     }
@@ -77,18 +83,6 @@ class Login : AppCompatActivity() {
      */
     private fun checkEmpty(email: String, password: String): Boolean {
         return email.isNotEmpty() && password.isNotEmpty()
-    }
-
-    /**
-     * Método para mostrar una alerta con el mensaje especificado.
-     * @param mensaje Mensaje de la alerta.
-     */
-    private fun showAlert(mensaje: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("ERROR") //siempre sale error tener en cuenta
-        builder.setMessage(mensaje)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 
     /**

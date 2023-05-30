@@ -45,12 +45,14 @@
                     style="@style/LabelEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="59dp"
                     android:layout_marginTop="22dp"
                     android:layout_marginEnd="70dp"
                     android:text="@string/modificar"
                     android:textColor="@color/blue"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/eliminarDatosGestionaSneaker"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

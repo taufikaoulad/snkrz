@@ -3,9 +3,12 @@ package cat.copernic.taufik.snkrz.Activity
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cat.copernic.taufik.snkrz.Model.Usuario
+import cat.copernic.taufik.snkrz.R
+import cat.copernic.taufik.snkrz.Utils.Utils
 import cat.copernic.taufik.snkrz.databinding.ActivityRegistroBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,15 +20,12 @@ import java.util.regex.Pattern
  * Clase Registro que extiende AppCompatActivity.
  */
 class Registro : AppCompatActivity() {
-    private lateinit var binding: ActivityRegistroBinding
 
-    private var bd = FirebaseFirestore.getInstance()
-
-    private lateinit var auth: FirebaseAuth
-
-    private lateinit var User: Usuario
-
-    @SuppressLint("MissingInflatedId")
+    private lateinit var binding: ActivityRegistroBinding // Acceso a las vistas de la actividad "Registro".
+    private var bd = FirebaseFirestore.getInstance() // Instancia de Firebase Firestore.
+    private lateinit var auth: FirebaseAuth // Instancia de FirebaseAuth para autenticación.
+    private lateinit var User: Usuario // Objeto Usuario para almacenar información.
+    @SuppressLint("MissingInflatedId") // Supresión de advertencia de que no se encuentr un Id inflado de la vista
     /**
      * Método onCreate que se llama cuando se crea la actividad.
      * @param savedInstanceState Objeto Bundle que contiene el estado previamente guardado de la actividad.
@@ -36,6 +36,7 @@ class Registro : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //Ocultar la app bar
         supportActionBar?.hide()
 
@@ -54,11 +55,16 @@ class Registro : AppCompatActivity() {
             //Sentencia if para verificar que el paswword es igual al password que ponemos al repetir la contraseña
             //Tambien verifica que los campos no esten bacios
             //en caso contrario mustra el mensaje del fallo (else)
-            if (password.equals(repetirContrasenya) && checkEmpty(email, password, repetirContrasenya)
+            if (checkEmpty(email, password, repetirContrasenya)
             ) {
-                register(email, password)
+                if(password.equals(repetirContrasenya)){
+                    register(email, password)
+                }
+                else{
+                    Utils.showAlert(getString(R.string.Registro1) ,getString(R.string.Registro2), this)
+                }
             } else {
-                showAlert("El email, la contraseña y la confirmacion de la contraseña, no pueden ser campos vacíos. " ,"ERROR")
+                Utils.showAlert(getString(R.string.Registro) ,getString(R.string.Registro4), this)
             }
         }
 
@@ -76,18 +82,16 @@ class Registro : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             anadirUsuario(email, password)
-                            showAlert("Se ha creado la cuenta con éxito!!!", "Creación Exitosa")
+                            Utils.showAlert(getString(R.string.Registro5), getString(R.string.Registro6),this)
                         } else {
-                            showAlert("Se ha producido un error registrado al usuario","ERROR")
+                            Utils.showAlert(getString(R.string.Registro7),getString(R.string.Registro8), this)
                         }
                     }
             } else {
-                showAlert("El format de Contrasenya és invalid. " +
-                        "La contrasenya ha de contenir entre 6 i 16 valors, una majuscula, una minuscula, " +
-                        "un numero i un caracter que no sigui alfanumeric.", "ERROR")
+                Utils.showAlert(getString(R.string.Registro9), getString(R.string.Registro10), this)
             }
         } else {
-            showAlert("El format del Email és invalid","ERROR")
+            Utils.showAlert(getString(R.string.Registro11),getString(R.string.Registro12), this)
         }
 
     }
@@ -129,7 +133,7 @@ class Registro : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }else {
-                    showAlert("El Usuari no s'ha afegit","ERROR")
+                    Utils.showAlert(getString(R.string.Registro13),getString(R.string.Registro14), this)
                 }
             }
     }
@@ -145,21 +149,6 @@ class Registro : AppCompatActivity() {
     private fun checkEmpty(email: String, password: String, repetirContrasenya: String): Boolean {
         return email.isNotEmpty() && password.isNotEmpty() && repetirContrasenya.isNotEmpty()
     }
-
-
-    /**
-     * Método para mostrar una alerta con un mensaje.
-     * @param mensaje Mensaje a mostrar en la alerta.
-     * @param mensaje2 Título de la alerta.
-     */
-    private fun showAlert(mensaje: String, mensaje2: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(mensaje2) //siempre sale error tener en cuenta
-        builder.setMessage(mensaje)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
-
 
     /**
      * Método para verificar si una dirección de correo electrónico es válida.
@@ -177,9 +166,10 @@ class Registro : AppCompatActivity() {
      * al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
      * @param password Contraseña a verificar.
      * @return true si la contraseña es válida, false de lo contrario.
+     * //Pattern.compile("^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{6,16}\$")
      */
     var password_Param =
-        Pattern.compile("^(?=.*\\d)(?=.*[\\u0021-\\u002b\\u003c-\\u0040])(?=.*[A-Z])(?=.*[a-z])\\S{6,16}\$")
+        Pattern.compile("^\\S{6,16}\$")
     fun isValidPassword(password: CharSequence?): Boolean {
         return if (password == null) false else password_Param.matcher(password).matches()
     }

@@ -4,6 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -14,8 +15,8 @@ android {
         applicationId "cat.copernic.taufik.snkrz"
         minSdk 21
         targetSdk 33
-        versionCode 3
-        versionName "3.0"
+        versionCode 5
+        versionName "5.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -79,4 +80,6 @@ dependencies {
     //Storage
     implementation 'com.google.firebase:firebase-storage-ktx'
 
+    // Dokka dependency
+    //implementation "org.jetbrains.dokka:dokka-android-gradle-plugin:1.6.0"
 }
